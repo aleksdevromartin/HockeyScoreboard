@@ -1,0 +1,17 @@
+[
+	{ "s": "E", "p": [138, 17] },
+	{ "s": "EDITGAMETWO", "p": [53] },
+	{ "s": "EDITLOGOHOMEA", "p": [44] },
+	{ "s": "EDITNAMEHOMEA", "p": [44] },
+	{ "s": "ELANG", "p": [135, 9, 136, 12, 7] },
+	{ "s": "ENABLED", "p": [88, 136] },
+	{ "s": "EN_EN", "p": [138, 136, 98, 9, 4] },
+	{ "s": "ERRTABLOCLOSED", "p": [133] },
+	{ "s": "ERRTABLOCLOSEDLOGGED", "p": [133] },
+	{ "s": "ETHERNET", "p": [109, 108, 5] },
+	{ "s": "EXCEL", "p": [48] },
+	{ "s": "EXCEPT", "p": [4] },
+	{ "s": "EXE", "p": [7, 9, 6, 48, 5] },
+	{ "s": "EXE-ФАЙЛ", "p": [6] },
+	{ "s": "EXPORTED_BY", "p": [48] }
+]

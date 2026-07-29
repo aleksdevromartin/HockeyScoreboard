@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Публичное табло (горизонтальное)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white; min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .scoreboard {
+            position: fixed; top: 20px; left: 20px;
+            background: rgba(0, 0, 0, 0.8); color: white;
+            padding: 15px 25px; border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex; gap: 30px; align-items: center;
+            font-size: 1.5em; z-index: 1000;
+            border: 2px solid #ffd700;
+        }
+        .team { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .team img { height: 36px; max-width: 60px; object-fit: contain; }
+        .team-name { font-size: 1.1rem; font-weight: bold; color: #ffd700; }
+        .score { font-size: 2rem; font-weight: bold; }
+        .timer { font-size: 2rem; font-weight: bold; font-family: monospace; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 5px; }
+        .period-label { font-size: 0.9rem; color: #cfe2ef; text-align: center; margin-top: 4px; }
+        .center { display: flex; flex-direction: column; align-items: center; }
+        .penalties { position: fixed; top: 100px; left: 20px; display: flex; gap: 20px; z-index: 999; }
+        .pen-col { background: rgba(0,0,0,0.7); border-radius: 6px; padding: 6px 10px; font-family: monospace; font-size: 14px; min-width: 110px; }
+        .pen-col h5 { margin: 0 0 4px 0; font-size: 11px; color: #ffd700; letter-spacing: 1px; }
+        .pen-row { display: flex; justify-content: space-between; gap: 8px; padding: 1px 0; }
+        .pen-row.paused { opacity: 0.5; }
+
+        .inactive {
+            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; color: #ffd700;
+        }
+        .audio-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 9999;
+            font-size: 28px; color: #ffd700;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreboard" id="scoreboard">
+        <div class="team">
+            <img id="logoA" src="" alt="">
+            <span class="team-name" id="teamAName">КОМАНДА А</span>
+            <span class="score" id="scoreA">0</span>
+        </div>
+        <div class="center">
+            <div class="timer" id="timer">20:00</div>
+            <div class="period-label" id="period">1ST</div>
+        </div>
+        <div class="team">
+            <img id="logoB" src="" alt="">
+            <span class="team-name" id="teamBName">КОМАНДА Б</span>
+            <span class="score" id="scoreB">0</span>
+        </div>
+    </div>
+    <div class="penalties" id="penalties">
+        <div class="pen-col" id="penH"><h5>HOME</h5></div>
+        <div class="pen-col" id="penG"><h5>GUEST</h5></div>
+    </div>
+    <div class="inactive" id="inactive" style="display:none;">Площадка неактивна</div>
+    <div class="audio-overlay" id="audioOverlay">🔊 Нажмите для запуска табло<br><span style="font-size:14px; color:#ccc;">Click to enable sound</span></div>
+
+    <script>
+        const FIELD = (new URLSearchParams(location.search).get('field') ?? 'A').toUpperCase();
+        const SOUNDS = {
+            goal: new Audio('/sounds/goal.mp3'),
+            siren: new Audio('/sounds/siren.mp3'),
+            penalty_buzz: new Audio('/sounds/penalty_buzz.mp3'),
+        };
+        let audioEnabled = false;
+
+        document.getElementById('audioOverlay').addEventListener('click', () => {
+            for (const a of Object.values(SOUNDS)) {
+                a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(() => {});
+            }
+            audioEnabled = true;
+            document.getElementById('audioOverlay').style.display = 'none';
+        });
+
+        function playSound(name) {
+            const s = SOUNDS[name];
+            if (!s || !audioEnabled) return;
+            s.currentTime = 0;
+            s.play().catch(() => {});
+        }
+
+        function fmtTimer(sec) {
+            sec = Math.max(0, Math.floor(sec || 0));
+            return String(Math.floor(sec/60)).padStart(2,'0') + ':' + String(sec%60).padStart(2,'0');
+        }
+
+        function fieldIndex(letter) { return ['A','B','C'].indexOf(letter); }
+
+        function render(state) {
+            if (!state) return;
+            const numFields = state.num_fields || 3;
+            const idx = fieldIndex(FIELD);
+            const inactive = idx < 0 || idx >= numFields;
+
+            document.getElementById('inactive').style.display = inactive ? 'flex' : 'none';
+            document.getElementById('scoreboard').style.display = (!inactive && state.visible) ? 'flex' : 'none';
+            document.getElementById('penalties').style.display = (!inactive && state.visible) ? 'flex' : 'none';
+            if (inactive) return;
+
+            const fd = (state.fields && state.fields[FIELD]) || {
+                TeamH: state.team_a, TeamG: state.team_b,
+                ScoreH: state.score_a, ScoreG: state.score_b,
+                LogoH: state.logo_a, LogoG: state.logo_b,
+                Penalties: { H: [], G: [] },
+            };
+
+            document.getElementById('teamAName').textContent = fd.TeamH || '';
+            document.getElementById('teamBName').textContent = fd.TeamG || '';
+            document.getElementById('scoreA').textContent = fd.ScoreH ?? 0;
+            document.getElementById('scoreB').textContent = fd.ScoreG ?? 0;
+            document.getElementById('logoA').src = fd.LogoH || '';
+            document.getElementById('logoB').src = fd.LogoG || '';
+            document.getElementById('timer').textContent = fmtTimer(state.Timer);
+            document.getElementById('period').textContent = state.Period || '';
+
+            renderPenalties('H', (fd.Penalties && fd.Penalties.H) || []);
+            renderPenalties('G', (fd.Penalties && fd.Penalties.G) || []);
+        }
+
+        function renderPenalties(side, arr) {
+            const col = document.getElementById(side === 'H' ? 'penH' : 'penG');
+            col.innerHTML = `<h5>${side === 'H' ? 'HOME' : 'GUEST'}</h5>`;
+            for (const p of arr) {
+                const row = document.createElement('div');
+                row.className = 'pen-row' + (p.paused ? ' paused' : '');
+                const playerLabel = p.player ? `#${p.player}` : '—';
+                row.innerHTML = `<span>${playerLabel}</span><span>${fmtTimer(p.remaining)}</span>`;
+                col.appendChild(row);
+            }
+        }
+
+        function handleEvent(m) {
+            if (m.field && m.field !== FIELD) return;
+            if (m.event === 'goal') playSound('goal');
+            else if (m.event === 'siren') playSound('siren');
+            else if (m.event === 'penalty_expired') playSound('penalty_buzz');
+        }
+
+        // Initial fetch + WS
+        async function initialFetch() {
+            try {
+                const r = await fetch('/api/scoreboard', { cache: 'no-cache' });
+                if (r.ok) render(await r.json());
+            } catch {}
+        }
+
+        let ws = null;
+        let wsBackoff = 1000;
+
+        function connectWs() {
+            const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const url = `${proto}//${location.host}/ws/public?field=${FIELD}`;
+            ws = new WebSocket(url);
+            ws.onopen = () => { wsBackoff = 1000; };
+            ws.onmessage = (e) => {
+                try {
+                    const m = JSON.parse(e.data);
+                    if (m.type === 'state') render(m.state);
+                    else if (m.type === 'event') handleEvent(m);
+                } catch {}
+            };
+            ws.onclose = () => {
+                setTimeout(connectWs, wsBackoff);
+                wsBackoff = Math.min(wsBackoff * 2, 10000);
+            };
+            ws.onerror = () => {};
+        }
+
+        // Polling fallback (если WS лёг)
+        setInterval(() => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) initialFetch();
+        }, 2000);
+
+        initialFetch();
+        connectWs();
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Доступ ограничен | Сервер запущен</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(145deg, #0a0c12 0%, #0f111a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный градиентный фон (эффект свечения) */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.08), rgba(0, 0, 0, 0) 60%);
+            animation: slowDrift 24s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes slowDrift {
+            0% {
+                transform: translate(0%, 0%) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate(3%, 2%) rotate(2deg);
+                opacity: 1;
+            }
+        }
+
+        /* Сетчатый узор (техно-эстетика) */
+        body::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(56, 63, 115, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 63, 115, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            max-width: 520px;
+            width: 100%;
+            background: rgba(18, 22, 35, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(72, 85, 140, 0.35);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            padding: 2.2rem 2rem 2.5rem;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 32px 55px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.2) inset;
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        /* статус сервера */
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 19, 32, 0.7);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            width: fit-content;
+            margin-bottom: 1.8rem;
+            border: 0.5px solid rgba(56, 189, 93, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .status-led {
+            width: 12px;
+            height: 12px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #22c55e, 0 0 12px rgba(34, 197, 94, 0.4);
+            animation: pulseGreen 1.8s infinite;
+        }
+
+        @keyframes pulseGreen {
+            0% { opacity: 0.5; transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);}
+            70% { opacity: 1; transform: scale(1.05); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);}
+            100% { opacity: 0.5; transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);}
+        }
+
+        .status-text {
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            color: #bbf7d0;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #c0f2b8, #a3e635);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 2px rgba(34,197,94,0.2);
+        }
+
+        /* иконка замка / ограничения */
+        .lock-icon {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .lock-svg {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.3));
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #b9c3f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.85rem;
+        }
+
+        .access-badge {
+            background: rgba(239, 68, 68, 0.12);
+            border: 0.5px solid rgba(239, 68, 68, 0.35);
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            width: fit-content;
+            margin: 0 auto 1.5rem auto;
+            backdrop-filter: blur(4px);
+        }
+
+        .access-badge span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #f87171;
+            text-transform: uppercase;
+        }
+
+        .description {
+            text-align: center;
+            color: #a7b1d9;
+            font-weight: 400;
+            line-height: 1.55;
+            margin-bottom: 2rem;
+            font-size: 0.98rem;
+            padding: 0 0.2rem;
+        }
+
+        .restriction-panel {
+            background: rgba(10, 12, 20, 0.7);
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0 1.8rem;
+            border-left: 3px solid #f97316;
+            border-right: 1px solid rgba(255, 85, 85, 0.2);
+        }
+
+        .restriction-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #facc15;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .restriction-details {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .restriction-details li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: #cbd5e6;
+            padding: 0.45rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+
+        .restriction-details li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-icon {
+            font-size: 1.1rem;
+            min-width: 24px;
+        }
+
+        .error-code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            background: #0a0c16;
+            padding: 0.7rem 1rem;
+            border-radius: 14px;
+            text-align: center;
+            color: #8d9bdc;
+            margin-top: 1rem;
+            border: 0.5px solid #2d2f42;
+            letter-spacing: 0.3px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.7rem 1.6rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+            color: #e2e8ff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #2d3a6e, #1f2a4e);
+            border: 0.5px solid rgba(99, 102, 241, 0.6);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #3a4a82, #293566);
+            transform: scale(1.02);
+            border-color: #818cf8;
+            box-shadow: 0 6px 14px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-outline:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: #818cf8;
+            transform: translateY(-1px);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #5b678b;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(72, 85, 140, 0.25);
+            padding-top: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 1.6rem 1.4rem 2rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .action-buttons {
+                gap: 0.75rem;
+            }
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* декоративная линия */
+        .glow-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b4b9e, #a855f7, #3b4b9e, transparent);
+            width: 70%;
+            margin: 1rem auto 0;
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <div class="server-status">
+        <div class="status-led"></div>
+        <div class="status-text">Сервер активен · ONLINE</div>
+    </div>
+
+    <div class="lock-icon">
+        <svg class="lock-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 10V8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8V10M12 14V16M8 21H16C17.1046 21 18 20.1046 18 19V12C18 10.8954 17.1046 10 16 10H8C6.89543 10 6 10.8954 6 12V19C6 20.1046 6.89543 21 8 21Z" stroke="url(#lockGradient)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <defs>
+                <linearGradient id="lockGradient" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#f97316"/>
+                    <stop offset="0.5" stop-color="#ef4444"/>
+                    <stop offset="1" stop-color="#f59e0b"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <h1>Доступ ограничен</h1>
+
+    <div class="access-badge">
+        <span>🔐 403 Forbidden · Restricted Area</span>
+    </div>
+
+    <p class="description">
+        Вы попытались получить доступ к защищенному ресурсу. Сервер успешно обработал запрос,<br>
+        но доступ к запрашиваемой странице отклонен из-за политик безопасности.
+    </p>
+
+    <div class="restriction-panel">
+        <div class="restriction-title">
+            <span>⚠️</span> Причина ограничения
+        </div>
+        <ul class="restriction-details">
+            <li><span class="detail-icon">🛡️</span> Публичная страница отключена</li>
+            <li><span class="detail-icon">🛡️</span> Недостаточные права доступа (роль / сессия)</li>
+            <li><span class="detail-icon">🌍</span> Запрос из неподтвержденного IP-диапазона</li>
+            <li><span class="detail-icon">⏱️</span> Требуется дополнительная аутентификация</li>
+        </ul>
+    </div>
+
+    <div class="error-code">
+        <span style="font-weight: 600;">server →</span> HTTP/1.1 403 Forbidden &nbsp;|&nbsp; <span style="color:#a78bfa;">X-Frame-Options: DENY</span> &nbsp;|&nbsp; x-request-id: srv_7f3a2e1c
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-primary" id="refreshBtn">⟳ Попробовать снова</button>
+    </div>
+
+    <div class="glow-line"></div>
+    <div class="footer-note">
+        Сервер работает в штатном режиме · Доступ к контенту ограничен!
+    </div>
+</div>
+
+<script>
+    // Простая интерактивность — красивые уведомления без нарушения эстетики
+    (function() {
+        // Функция создания кастомного тост-уведомления
+        function showMessage(text, isError = false) {
+            // удаляем предыдущий тост если есть
+            const existingToast = document.querySelector('.custom-toast');
+            if(existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'custom-toast';
+            toast.innerText = text;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = isError ? 'rgba(200, 50, 70, 0.9)' : 'rgba(30, 40, 70, 0.95)';
+            toast.style.backdropFilter = 'blur(12px)';
+            toast.style.color = '#f0f3ff';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '40px';
+            toast.style.fontSize = '0.85rem';
+            toast.style.fontWeight = '500';
+            toast.style.fontFamily = "'Inter', sans-serif";
+            toast.style.border = '1px solid rgba(255,255,240,0.2)';
+            toast.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
+            toast.style.zIndex = '1000';
+            toast.style.letterSpacing = '0.3px';
+            toast.style.textAlign = 'center';
+            toast.style.maxWidth = '85%';
+            toast.style.whiteSpace = 'nowrap';
+            if(window.innerWidth <= 500) toast.style.whiteSpace = 'normal';
+            toast.style.pointerEvents = 'none';
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => {
+                    if(toast && toast.remove) toast.remove();
+                }, 400);
+            }, 2800);
+        }
+
+        // Кнопка "Попробовать снова" — имитация повторного запроса (ограничение остаётся)
+        const refreshBtn = document.getElementById('refreshBtn');
+        if(refreshBtn) {
+            refreshBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Анимация кнопки
+                refreshBtn.style.transform = 'scale(0.97)';
+                setTimeout(() => { if(refreshBtn) refreshBtn.style.transform = ''; }, 150);
+
+                // эмуляция проверки доступа — всегда выдаём тот же статус
+                showMessage('🔄 Повторный запрос выполнен. Доступ по-прежнему ограничен (403).', false);
+
+                // дополнительно подсветим карточку лёгкой вибрацией (эффект пульса)
+                const card = document.querySelector('.glass-card');
+                if(card) {
+                    card.style.transition = 'box-shadow 0.1s';
+                    card.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.5), 0 20px 35px -12px black';
+                    setTimeout(() => {
+                        card.style.boxShadow = '';
+                    }, 400);
+                }
+            });
+        }
+
+        // Кнопка "Запросить доступ" — отправка демо-запроса
+        const supportBtn = document.getElementById('supportBtn');
+        if(supportBtn) {
+            supportBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                supportBtn.style.transform = 'scale(0.96)';
+                setTimeout(() => { if(supportBtn) supportBtn.style.transform = ''; }, 120);
+                // элегантное сообщение с намёком на обратную связь
+                showMessage('📨 Заявка на доступ отправлена администратору. Ожидайте ответа в течение 24 ч.', false);
+
+                // небольшая анимация замка (намек на запрос)
+                const lockSvg = document.querySelector('.lock-svg');
+                if(lockSvg) {
+                    lockSvg.style.transition = 'transform 0.2s';
+                    lockSvg.style.transform = 'scale(1.08)';
+                    setTimeout(() => { if(lockSvg) lockSvg.style.transform = ''; }, 300);
+                }
+            });
+        }
+
+        // дополнительная динамика: при клике на статус сервера показать детали (игровая фишка)
+        const serverStatusBlock = document.querySelector('.server-status');
+        if(serverStatusBlock) {
+            serverStatusBlock.style.cursor = 'pointer';
+            serverStatusBlock.addEventListener('click', () => {
+                showMessage('🖥️ Сервер: nginx/1.24 + Node.js · Uptime: 14d 8h · Запросов заблокировано: 127', false);
+            });
+        }
+
+        // консоль-приветствие (для разработчика)
+        console.log("%c🛡️ СТРАНИЦА ДОСТУПА ОГРАНИЧЕНА | Сервер активен, но доступ запрещён (403)", "color: #f97316; font-size: 14px; font-weight: bold;");
+        console.log("%cПолитики безопасности активны. Доступ к запрашиваемому URL ограничен.", "color: #94a3b8;");
+    })();
+</script>
+
+<style>
+    @media (max-width: 550px) {
+        .custom-toast {
+            white-space: normal !important;
+            width: 90%;
+            text-align: center;
+            line-height: 1.4;
+            font-size: 0.75rem !important;
+            padding: 10px 18px !important;
+            bottom: 20px !important;
+        }
+        .restriction-details li {
+            font-size: 0.8rem;
+            gap: 8px;
+        }
+        .restriction-panel {
+            padding: 1rem;
+        }
+    }
+    .custom-toast {
+        animation: fadeInUp 0.2s ease-out;
+    }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+    /* улучшение читаемости */
+    .glass-card *::selection {
+        background: rgba(129, 140, 248, 0.4);
+        color: white;
+    }
+</style>
+
+</body>
+</html>

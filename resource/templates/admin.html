@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <title>PySide6 Web Remote</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #0a1d2f;
+            --border: #2d6f97;
+            --fg: #e6f7ff;
+            --accent: #37b1d9;
+            --goal: #4CAF50;
+            --foul: #ff9800;
+            --card-yellow: #ffc107;
+            --card-red: #f44336;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: radial-gradient(circle at 20% -10%, rgba(60,120,180,.25), transparent 40%), var(--bg);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--fg);
+        }
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            background: rgba(10, 29, 47, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-top: 30px;
+            border: 1px solid var(--border);
+        }
+        h1 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .blocks-grid { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; }
+        .block-row { display: flex; gap: 15px; width: 100%; }
+        .block-left {
+            width: 70%;
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.15), rgba(10, 29, 47, 0.6));
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 15px; position: relative; margin-top: 12px;
+        }
+        .block-center, .block-right {
+            width: 30%;
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.1), rgba(10, 29, 47, 0.5));
+            border: 1px solid rgba(45, 111, 151, 0.6);
+            border-radius: 8px; padding: 15px; position: relative; margin-top: 12px;
+        }
+        .block-center { width: 100%; }
+        .block-label {
+            position: absolute; top: -12px; left: 20px;
+            background: var(--bg); padding: 0 10px;
+            font-weight: bold; color: var(--accent);
+            font-size: 14px; border-radius: 20px;
+            border: 1px solid var(--border); letter-spacing: 0.5px;
+        }
+        .block-content { color: var(--fg); font-size: 14px; line-height: 1.4; margin-top: 5px; }
+        .status {
+            padding: 12px; background: rgba(232, 245, 233, 0.1);
+            border-radius: 5px; margin: 10px 0; border-left: 4px solid #4CAF50;
+        }
+        .input-group { display: flex; gap: 10px; margin-top: 5px; }
+        .input-group input {
+            flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 5px;
+            background: rgba(255,255,255,0.1); color: var(--fg); font-size: 14px;
+        }
+        .input-group input::placeholder { color: rgba(230, 247, 255, 0.6); }
+        .input-group input:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.15); }
+        .input-group button {
+            padding: 10px 20px; border: none; border-radius: 5px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white; cursor: pointer; font-size: 14px; font-weight: bold;
+        }
+        .scoreboards-container { display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .scoreboard {
+            flex: 1; min-width: 280px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 15px; padding: 15px; border: 2px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .scoreboard.hidden { display: none; }
+        .scoreboard-title { text-align: center; font-size: 16px; font-weight: bold; color: var(--accent); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
+        .teams { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .team { flex: 1; text-align: center; }
+        .team-name { font-size: 12px; font-weight: bold; margin-bottom: 8px; color: var(--accent); }
+        .team-name input { width: 100%; padding: 5px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); border-radius: 5px; color: var(--fg); text-align: center; font-size: 12px; }
+        .score { font-size: 32px; font-weight: bold; margin: 8px 0; color: #fff; text-shadow: 0 0 10px var(--accent); }
+        .score-controls { display: flex; gap: 5px; justify-content: center; margin-top: 5px; }
+        .vs { font-size: 16px; font-weight: bold; color: var(--accent); }
+        .match-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+        .info-item { text-align: center; }
+        .info-label { font-size: 10px; color: var(--accent); margin-bottom: 3px; }
+        .info-value { font-size: 14px; font-weight: bold; }
+        .control-buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+        .stat-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding: 5px; background: rgba(255,255,255,0.05); border-radius: 5px; }
+        .btn { padding: 6px 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; color: white; }
+        .btn-goal { background: var(--goal); }
+        .btn-foul { background: var(--foul); }
+        .btn-yellow { background: var(--card-yellow); color: #333; }
+        .btn-red { background: var(--card-red); }
+        .btn-reset { background: #607d8b; }
+        .btn-period { background: #9c27b0; }
+        .btn-pen-2 { background: #ffc107; color: #222; }
+        .btn-pen-5 { background: #ff9800; color: #222; }
+        .btn-pen-10 { background: #f44336; }
+        .btn-pen-m { background: #6a1b9a; }
+        .btn-timer { background: #1976d2; padding: 8px 14px; font-size: 13px; }
+        .btn-timer-stop { background: #c62828; }
+        .btn-timer-reset { background: #455a64; }
+        .small-btn { padding: 3px 6px; font-size: 10px; margin: 0; }
+
+        .pen-block { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+        .pen-side { margin-bottom: 8px; }
+        .pen-side h4 { margin: 4px 0; font-size: 11px; color: var(--accent); }
+        .pen-add-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+        .pen-add-row input { width: 50px; padding: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); border-radius: 3px; color: var(--fg); font-size: 11px; }
+        .pen-list { margin-top: 5px; font-size: 11px; }
+        .pen-item { display: flex; justify-content: space-between; align-items: center; padding: 3px 6px; margin: 2px 0; background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .pen-item.paused { opacity: 0.55; }
+        .pen-item .pen-rm { background: transparent; border: none; color: #f44336; cursor: pointer; font-size: 13px; padding: 0 4px; }
+
+        .timer-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; align-items: center; }
+        .timer-display { font-family: monospace; font-size: 28px; font-weight: bold; color: #fff; padding: 4px 12px; background: rgba(0,0,0,0.4); border-radius: 6px; }
+        .events-log {
+            margin-top: 10px; max-height: 140px; overflow-y: auto;
+            background: rgba(0,0,0,0.3); border-radius: 5px; padding: 8px;
+            font-family: monospace; font-size: 11px; color: rgba(230, 247, 255, 0.8);
+        }
+        .events-log .ev { margin-bottom: 2px; }
+        .checkbox-row { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; }
+        @media (max-width: 768px) {
+            .block-row { flex-direction: column; }
+            .block-left, .block-right { width: 100%; }
+            .container { max-width: 95%; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👤 {{ username }} - Web Remote</h1>
+        <div class="status" id="status">Подключение к серверу…</div>
+
+        <div class="blocks-grid">
+            <!-- Управление таблами -->
+            <div class="block-row">
+                <div class="block-left">
+                    <div class="block-label">⚙️ Управление игровым таблом</div>
+                    <div class="block-content">
+                        <div class="scoreboards-container" id="scoreboardsContainer">
+                            <!-- Площадка A -->
+                            <div class="scoreboard" data-field="1" data-letter="A">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА А</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="A" maxlength="15" value="HOME A">
+                                        </div>
+                                        <div class="score" id="homeScoreA">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('A','H',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('A','H',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="A" maxlength="15" value="GUEST A">
+                                        </div>
+                                        <div class="score" id="awayScoreA">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('A','G',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('A','G',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-reset small-btn" onclick="resetField('A')">Сброс площадки</button>
+                                </div>
+                                <div class="pen-block" data-pen-field="A"></div>
+                            </div>
+
+                            <!-- Площадка B -->
+                            <div class="scoreboard" data-field="2" data-letter="B">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА B</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="B" maxlength="15" value="HOME B">
+                                        </div>
+                                        <div class="score" id="homeScoreB">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('B','H',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('B','H',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="B" maxlength="15" value="GUEST B">
+                                        </div>
+                                        <div class="score" id="awayScoreB">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('B','G',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('B','G',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-reset small-btn" onclick="resetField('B')">Сброс площадки</button>
+                                </div>
+                                <div class="pen-block" data-pen-field="B"></div>
+                            </div>
+
+                            <!-- Площадка C -->
+                            <div class="scoreboard" data-field="3" data-letter="C">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА C</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="C" maxlength="15" value="HOME C">
+                                        </div>
+                                        <div class="score" id="homeScoreC">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('C','H',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('C','H',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="C" maxlength="15" value="GUEST C">
+                                        </div>
+                                        <div class="score" id="awayScoreC">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('C','G',1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore('C','G',-1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-reset small-btn" onclick="resetField('C')">Сброс площадки</button>
+                                </div>
+                                <div class="pen-block" data-pen-field="C"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-right">
+                    <div class="block-label">📊 Команды</div>
+                    <div class="block-content">
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева А</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamHAFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoHA" placeholder="Логотип (имя файла)">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева B</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamHBFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoHB" placeholder="Логотип (имя файла)">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева C</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamHCFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoHC" placeholder="Логотип (имя файла)">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости А</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamGAFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoGA" placeholder="Логотип (имя файла)">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости B</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamGBFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoGB" placeholder="Логотип (имя файла)">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости C</div>
+                        <div class="input-group">
+                            <input type="text" data-server-field="TeamGCFull" placeholder="Полное имя">
+                            <input type="text" data-server-field="LogoGC" placeholder="Логотип (имя файла)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Таймер и общие настройки -->
+            <div class="block-row">
+                <div class="block-left">
+                    <div class="block-label">⏱️ Таймер игры</div>
+                    <div class="block-content">
+                        <div class="timer-row">
+                            <span class="timer-display" id="serverTimer">20:00</span>
+                            <button class="btn btn-timer" onclick="timerStart()">▶ {{ translation('WebTimerStart', 'Старт') }}</button>
+                            <button class="btn btn-timer btn-timer-stop" onclick="timerStop()">⏸  {{ translation('WebTimerStop', 'Стоп') }}</button>
+                            <button class="btn btn-timer btn-timer-reset" onclick="timerReset()">⟲ {{ translation('WebTimerReset', 'Сброс') }}</button>
+                            <button class="btn btn-timer" onclick="timerNudge(-10)"> {{ translation('WebTimerNudgeMinus10', '-10с') }}</button>
+                            <button class="btn btn-timer" onclick="timerNudge(10)"> {{ translation('WebTimerNudgePlus10', '+10с') }}</button>
+                        </div>
+                        <div class="timer-row">
+                            <span style="font-size:12px; color:var(--accent);">Пресеты:</span>
+                            <button class="btn btn-timer" onclick="timerSet(1200)">20:00</button>
+                            <button class="btn btn-timer" onclick="timerSet(900)">15:00</button>
+                            <button class="btn btn-timer" onclick="timerSet(300)">5:00</button>
+                            <button class="btn btn-timer" onclick="timerSet(120)">2:00</button>
+                        </div>
+                        <div class="timer-row">
+                            <span style="font-size:12px; color:var(--accent);">Период:</span>
+                            <span class="info-value" id="periodValue">1</span>
+                            <button class="btn btn-period" onclick="changePeriod(1)">+ {{ translation('WebTimerPeriodPlus', '+ Период') }}</button>
+                            <button class="btn btn-period" onclick="changePeriod(-1)">− {{ translation('WebTimerPeriodMinus', '- Период') }}</button>
+                            <label class="checkbox-row">
+                                <input type="checkbox" id="autoNextPeriod" onchange="setAutoNextPeriod(this.checked)">
+                                Авто-переход при 0
+                            </label>
+                        </div>
+                        <div class="timer-row">
+                            <span style="font-size:12px; color:var(--accent);">Площадки:</span>
+                            <button class="btn btn-timer" onclick="setNumFields(1)">1</button>
+                            <button class="btn btn-timer" onclick="setNumFields(2)">2</button>
+                            <button class="btn btn-timer" onclick="setNumFields(3)">3</button>
+                            <span class="info-value" id="numFieldsValue">-</span>
+                        </div>
+                        <div class="timer-row">
+                            <label class="checkbox-row">
+                                <input type="checkbox" id="visibleToggle" onchange="setVisible(this.checked)">
+                                Показывать публичное табло
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-right">
+                    <div class="block-label">🔧 Команды (raw)</div>
+                    <div class="block-content">
+                        <div class="input-group">
+                            <input type="text" id="cmdInput2" placeholder="Введите команду…">
+                            <button onclick="sendCommandFromInput('cmdInput2')">Отправить</button>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">
+                            Команда уйдёт в Qt-приложение через WebSocket
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Статус соединения и журнал -->
+            <div class="block-row">
+                <div class="block-center">
+                    <div class="block-label">📡 Статус соединения</div>
+                    <div class="block-content">
+                        <div class="stat-item"><span>🌐 WebSocket:</span><span id="wsStatus">Подключение…</span></div>
+                        <div class="stat-item"><span>🖥️ HTTP API:</span><span id="httpStatus">Проверка…</span></div>
+                        <div class="stat-item"><span>👤 Пользователь:</span><span id="username">{{ username }}</span></div>
+                        <div class="stat-item"><span>📡 Сервер:</span><span id="serverHost">-</span></div>
+                        <div class="stat-item"><span>⏰ Последняя синхронизация:</span><span id="lastSync">-</span></div>
+                        <div class="events-log" id="eventsLog"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const FIELDS = ['A', 'B', 'C'];
+        let lastState = null;
+        let ws = null;
+        let wsBackoff = 1000;
+
+        // ============== Утилиты ==============
+        function fmtTimer(sec) {
+            sec = Math.max(0, Math.floor(sec || 0));
+            const m = Math.floor(sec / 60).toString().padStart(2, '0');
+            const s = (sec % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function addSystemEvent(text) {
+            const log = document.getElementById('eventsLog');
+            if (!log) return;
+            const div = document.createElement('div');
+            div.className = 'ev';
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            log.appendChild(div);
+            while (log.childElementCount > 80) log.removeChild(log.firstChild);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateSyncTime() {
+            const el = document.getElementById('lastSync');
+            if (el) el.textContent = new Date().toLocaleTimeString();
+        }
+
+        async function postScoreboard(payload) {
+            try {
+                const res = await fetch('/api/scoreboard', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                document.getElementById('httpStatus').textContent = res.ok ? '✅ OK' : `⚠️ ${res.status}`;
+                if (!res.ok) addSystemEvent(`POST /api/scoreboard → ${res.status}`);
+                updateSyncTime();
+                return res.ok ? await res.json() : null;
+            } catch (err) {
+                document.getElementById('httpStatus').textContent = '❌ Ошибка';
+                addSystemEvent('POST ошибка: ' + err.message);
+                return null;
+            }
+        }
+
+        async function postPenalty(payload) {
+            try {
+                const res = await fetch('/api/penalty', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                if (!res.ok) addSystemEvent(`POST /api/penalty → ${res.status}`);
+                return res.ok ? await res.json() : null;
+            } catch (err) {
+                addSystemEvent('Penalty ошибка: ' + err.message);
+                return null;
+            }
+        }
+
+        // ============== Действия из UI ==============
+        function sendAction(action) {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'action', action: action }));
+                addSystemEvent('→ action: ' + action);
+            } else {
+                addSystemEvent('WebSocket не подключён');
+            }
+        }
+
+        function updateScore(field, side, delta) {
+            const cur = lastState && lastState.fields && lastState.fields[field]
+                ? (side === 'H' ? lastState.fields[field].ScoreH : lastState.fields[field].ScoreG)
+                : 0;
+            const next = Math.max(0, (cur || 0) + delta);
+            const key = `Score${side}${field}`;
+            postScoreboard({ [key]: next });
+        }
+
+        function changePeriod(delta) {
+            const cur = lastState ? (lastState.Period || lastState.period || 1) : 1;
+            postScoreboard({ Period: Math.max(1, cur + delta) });
+        }
+
+        async function resetField(field) {
+            await postScoreboard({
+                [`Score${'H'}${field}`]: 0,
+                [`Score${'G'}${field}`]: 0,
+                [`Shots${'H'}${field}`]: 0,
+                [`Shots${'G'}${field}`]: 0,
+            });
+            await postPenalty({ op: 'clear', field, side: 'H' });
+            await postPenalty({ op: 'clear', field, side: 'G' });
+            addSystemEvent(`Сброс площадки ${field}`);
+        }
+
+        // Старт / пауза / сброс — WS → HandleWebAction → OnTimerStart/Pause/Reset
+        function timerStart() { sendAction('timer_start'); }
+        function timerStop()  { sendAction('timer_pause'); }
+        function timerReset() { sendAction('timer_reset'); }
+
+        // Установка и сдвиг времени — POST (коррекция значения, не автотик)
+        function timerSet(sec) {
+            postScoreboard({ Timer: sec, timer_running: false });
+        }
+        function timerNudge(delta) {
+            const cur = lastState ? (lastState.Timer || 0) : 0;
+            postScoreboard({ Timer: Math.max(0, cur + delta) });
+        }
+
+        function setAutoNextPeriod(checked) { postScoreboard({ auto_next_period: checked }); }
+        function setVisible(checked) { postScoreboard({ visible: checked }); }
+
+        async function setNumFields(n) {
+            n = Math.max(1, Math.min(3, parseInt(n, 10) || 1));
+            const data = await postScoreboard({ num_fields: n });
+            if (data) applyState(data);
+            addSystemEvent(`Площадок: ${n}`);
+        }
+
+        function sendCommandFromInput(inputId) {
+            const inp = document.getElementById(inputId);
+            if (!inp) return;
+            const text = inp.value.trim();
+            if (!text) return;
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'command', text }));
+                addSystemEvent('→ ' + text);
+                inp.value = '';
+            } else {
+                addSystemEvent('WebSocket не подключён, команда не отправлена');
+            }
+        }
+
+        function penaltyAdd(field, side, ptype) {
+            const playerInput = document.querySelector(`.pen-add-row[data-field="${field}"][data-side="${side}"] input.pen-player`);
+            const player = playerInput ? playerInput.value.trim() : '';
+            postPenalty({ op: 'add', field, side, type: ptype, player });
+            if (playerInput) playerInput.value = '';
+        }
+
+        function penaltyRemove(field, side, id) {
+            postPenalty({ op: 'remove', field, side, id });
+        }
+
+        // ============== Рендер state ==============
+        function applyState(state) {
+            lastState = state;
+            const numFields = Math.max(1, Math.min(3, parseInt(state.num_fields, 10) || 1));
+
+            document.querySelectorAll('.scoreboard').forEach(el => {
+                const idx = parseInt(el.getAttribute('data-field'), 10);
+                if (idx > numFields) el.classList.add('hidden');
+                else el.classList.remove('hidden');
+            });
+            const nfEl = document.getElementById('numFieldsValue');
+            if (nfEl) nfEl.textContent = String(numFields);
+
+            for (const f of FIELDS) {
+                const fd = state.fields && state.fields[f];
+                if (!fd) continue;
+                const homeScore = document.getElementById(`homeScore${f}`);
+                const awayScore = document.getElementById(`awayScore${f}`);
+                if (homeScore) homeScore.textContent = fd.ScoreH;
+                if (awayScore) awayScore.textContent = fd.ScoreG;
+
+                const homeInput = document.querySelector(`.team-home-name[data-field="${f}"]`);
+                const awayInput = document.querySelector(`.team-away-name[data-field="${f}"]`);
+                if (homeInput && document.activeElement !== homeInput) homeInput.value = fd.TeamH || '';
+                if (awayInput && document.activeElement !== awayInput) awayInput.value = fd.TeamG || '';
+
+                renderPenalties(f, fd.Penalties);
+            }
+
+            // Полные имена и логотипы (правый блок)
+            document.querySelectorAll('input[data-server-field]').forEach(inp => {
+                const key = inp.getAttribute('data-server-field');
+                if (document.activeElement === inp) return;
+                let val = '';
+                if (key.startsWith('Team')) {
+                    // TeamHAFull → field A, side H
+                    const m = key.match(/^Team([HG])([ABC])Full$/);
+                    if (m) {
+                        const fd = state.fields && state.fields[m[2]];
+                        if (fd) val = m[1] === 'H' ? (fd.TeamHFull || '') : (fd.TeamGFull || '');
+                    }
+                } else if (key.startsWith('Logo')) {
+                    const m = key.match(/^Logo([HG])([ABC])$/);
+                    if (m) {
+                        const fd = state.fields && state.fields[m[2]];
+                        if (fd) val = m[1] === 'H' ? (fd.LogoH || '') : (fd.LogoG || '');
+                    }
+                }
+                inp.value = val;
+            });
+
+            const tEl = document.getElementById('serverTimer');
+            if (tEl) tEl.textContent = fmtTimer(state.Timer);
+            const pEl = document.getElementById('periodValue');
+            if (pEl) pEl.textContent = String(state.Period ?? state.period ?? 1);
+            const auto = document.getElementById('autoNextPeriod');
+            if (auto) auto.checked = !!state.auto_next_period;
+            const vis = document.getElementById('visibleToggle');
+            if (vis) vis.checked = !!state.visible;
+            const hostEl = document.getElementById('serverHost');
+            if (hostEl) hostEl.textContent = state.host || location.host;
+
+            updateSyncTime();
+        }
+
+        function renderPenalties(field, penalties) {
+            const block = document.querySelector(`.pen-block[data-pen-field="${field}"]`);
+            if (!block) return;
+            const sides = [
+                { code: 'H', label: 'HOME' },
+                { code: 'G', label: 'GUEST' },
+            ];
+            block.innerHTML = '';
+            for (const s of sides) {
+                const arr = (penalties && penalties[s.code]) || [];
+                const wrap = document.createElement('div');
+                wrap.className = 'pen-side';
+                wrap.innerHTML = `
+                    <h4>🟨 Штрафы ${s.label}</h4>
+                    <div class="pen-add-row" data-field="${field}" data-side="${s.code}">
+                        <input class="pen-player" placeholder="#"/>
+                        <button class="btn btn-pen-2 small-btn" onclick="penaltyAdd('${field}','${s.code}','2min')">+2</button>
+                        <button class="btn btn-pen-5 small-btn" onclick="penaltyAdd('${field}','${s.code}','5min')">+5</button>
+                        <button class="btn btn-pen-10 small-btn" onclick="penaltyAdd('${field}','${s.code}','10min')">+10</button>
+                        <button class="btn btn-pen-m small-btn" onclick="penaltyAdd('${field}','${s.code}','match')">+M</button>
+                    </div>
+                    <div class="pen-list"></div>
+                `;
+                const list = wrap.querySelector('.pen-list');
+                for (const p of arr) {
+                    const item = document.createElement('div');
+                    item.className = 'pen-item' + (p.paused ? ' paused' : '');
+                    const playerLabel = p.player ? `#${p.player}` : '—';
+                    const dq = p.type === 'match' ? '🚫 ' : '';
+                    item.innerHTML = `
+                        <span>${dq}${playerLabel} · ${p.type}</span>
+                        <span>${fmtTimer(p.remaining)}</span>
+                        <button class="pen-rm" title="Удалить">✕</button>
+                    `;
+                    item.querySelector('.pen-rm').addEventListener('click',
+                        () => penaltyRemove(field, s.code, p.id));
+                    list.appendChild(item);
+                }
+                block.appendChild(wrap);
+            }
+        }
+
+        // ============== WebSocket ==============
+        function handleServerMessage(data) {
+            if (!data || !data.type) return;
+            if (data.type === 'state') {
+                applyState(data.state);
+                return;
+            }
+            if (data.type === 'event') {
+                if (data.event === 'goal') addSystemEvent(`⚽ ГОЛ ${data.field}/${data.side} (${data.score})`);
+                else if (data.event === 'siren') addSystemEvent(`📢 СИРЕНА (${data.reason || ''})`);
+                else if (data.event === 'penalty_expired') addSystemEvent(`✅ Штраф истёк ${data.field}/${data.side}`);
+                else addSystemEvent('event: ' + JSON.stringify(data));
+                return;
+            }
+            if (data.type === 'client_connected') addSystemEvent(`👋 Клиент подключён: ${data.username || '?'}`);
+            else if (data.type === 'client_disconnected') addSystemEvent(`👋 Клиент отключён: ${data.username || '?'}`);
+        }
+
+        function connectWs() {
+            const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const url = `${proto}//${location.host}/ws`;
+            ws = new WebSocket(url);
+
+            ws.onopen = () => {
+                document.getElementById('wsStatus').textContent = '✅ Подключено';
+                document.getElementById('status').textContent = '✅ Соединение установлено';
+                wsBackoff = 1000;
+                addSystemEvent('WebSocket подключён');
+                syncFromServer();
+            };
+            ws.onmessage = (e) => {
+                try { handleServerMessage(JSON.parse(e.data)); }
+                catch { addSystemEvent('Невалидное WS сообщение'); }
+            };
+            ws.onclose = () => {
+                document.getElementById('wsStatus').textContent = '❌ Отключено';
+                document.getElementById('status').textContent = '❌ Соединение разорвано';
+                addSystemEvent(`WebSocket отключён, переподключение через ${wsBackoff}мс`);
+                setTimeout(connectWs, wsBackoff);
+                wsBackoff = Math.min(wsBackoff * 2, 10000);
+            };
+            ws.onerror = () => {
+                document.getElementById('wsStatus').textContent = '⚠️ Ошибка';
+            };
+        }
+
+        async function syncFromServer() {
+            try {
+                const r = await fetch('/api/scoreboard');
+                if (r.ok) {
+                    const data = await r.json();
+                    applyState(data);
+                    document.getElementById('httpStatus').textContent = '✅ OK';
+                } else {
+                    document.getElementById('httpStatus').textContent = '⚠️ ' + r.status;
+                }
+            } catch (e) {
+                document.getElementById('httpStatus').textContent = '❌ Ошибка';
+            }
+        }
+
+        // ============== Привязка обработчиков на ввод ==============
+        function bindInputHandlers() {
+            // Короткие имена прямо под счетом (сохраняются в TeamHA/TeamGA и т.д.)
+            document.querySelectorAll('.team-home-name').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const f = inp.getAttribute('data-field');
+                    postScoreboard({ [`TeamH${f}`]: inp.value });
+                });
+            });
+            document.querySelectorAll('.team-away-name').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const f = inp.getAttribute('data-field');
+                    postScoreboard({ [`TeamG${f}`]: inp.value });
+                });
+            });
+            // Полные имена и логотипы (правая колонка)
+            document.querySelectorAll('input[data-server-field]').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const key = inp.getAttribute('data-server-field');
+                    postScoreboard({ [key]: inp.value });
+                });
+            });
+        }
+
+        // ============== Init ==============
+        bindInputHandlers();
+        syncFromServer();
+        connectWs();
+    </script>
+</body>
+</html>

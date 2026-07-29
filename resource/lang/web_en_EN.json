@@ -1,0 +1,11 @@
+{
+    "WebAdminTitle": "Scoreboard Management",
+    "WebPlatformA": "Platform A",
+    "WebTimerStart": "Start",
+    "WebTimerStop": "Stop",
+    "WebHomeTeam": "Home",
+    "WebGuestTeam": "Guest",
+    "WebPeriod": "Period",
+    "WebPublicInactive": "Platform is inactive",
+    "WebClickForSound": "Click to start the scoreboard"
+}

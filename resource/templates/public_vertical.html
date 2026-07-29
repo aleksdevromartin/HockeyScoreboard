@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Хоккейное табло (вертикальное)</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --border: #2d6f97;
+            --fg: #e6f7ff;
+            --accent: #37b1d9;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            height: 100%; margin: 0;
+            background: radial-gradient(circle at 20% -10%, rgba(60,120,180,.25), transparent 40%), var(--bg);
+            font-family: Arial, Helvetica, sans-serif; color: var(--fg);
+        }
+        .scoreboard {
+            position: fixed; top: 20px; left: 20px;
+            width: 220px;
+            padding: 6px 8px;
+            background: linear-gradient(#0a1d2f, #0a1b2e);
+            border-radius: 10px; border: 2px solid var(--border);
+            box-shadow: 0 6px 18px rgba(0,0,0,.4);
+        }
+        .team-row {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 12px; padding: 4px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.3);
+        }
+        .team-row:last-child { border-bottom: none; }
+        .team {
+            display: flex; align-items: center;
+            text-transform: uppercase; gap: 6px;
+            font-weight: 700; font-size: 12px;
+        }
+        .team img { height: 20px; vertical-align: middle; }
+        .abbr { letter-spacing: 1px; font-weight: 800; }
+        .score {
+            font-size: 16px; font-weight: 900; padding: 1px 6px;
+            background: #062e3c; min-width: 30px; text-align: center;
+        }
+        .timer, .period {
+            color: #cfe2ef; font-size: 16px; font-weight: 900;
+            padding: 1px 4px; min-width: 60px; text-align: center;
+        }
+        .pen-block {
+            display: flex; gap: 6px; padding: 4px 0; border-top: 1px dashed var(--border);
+            font-family: monospace; font-size: 10px;
+        }
+        .pen-col { flex: 1; min-width: 0; }
+        .pen-col h6 { margin: 2px 0; font-size: 9px; color: #ffd700; }
+        .pen-row { display: flex; justify-content: space-between; padding: 1px 0; }
+        .pen-row.paused { opacity: 0.5; }
+
+        .inactive {
+            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-size: 28px; color: #ffd700;
+        }
+        .audio-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 9999;
+            font-size: 24px; color: #ffd700;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreboard" id="scoreboard">
+        <div class="team-row">
+            <div class="team">
+                <img id="logoA" src="" alt="">
+                <span class="abbr" id="teamAName">CAN</span>
+            </div>
+            <span class="score" id="scoreA">0</span>
+            <span class="timer" id="timer">20:00</span>
+        </div>
+        <div class="team-row">
+            <div class="team">
+                <img id="logoB" src="" alt="">
+                <span class="abbr" id="teamBName">USA</span>
+            </div>
+            <span class="score" id="scoreB">0</span>
+            <span class="period" id="period">1ST</span>
+        </div>
+        <div class="pen-block">
+            <div class="pen-col" id="penH"><h6>HOME</h6></div>
+            <div class="pen-col" id="penG"><h6>GUEST</h6></div>
+        </div>
+    </div>
+    <div class="inactive" id="inactive" style="display:none;">Площадка неактивна</div>
+    <div class="audio-overlay" id="audioOverlay">🔊 Нажмите для запуска<br><span style="font-size:12px; color:#ccc;">Click to enable sound</span></div>
+
+    <script>
+        const FIELD = (new URLSearchParams(location.search).get('field') ?? 'A').toUpperCase();
+        const SOUNDS = {
+            goal: new Audio('/sounds/goal.mp3'),
+            siren: new Audio('/sounds/siren.mp3'),
+            penalty_buzz: new Audio('/sounds/penalty_buzz.mp3'),
+        };
+        let audioEnabled = false;
+
+        document.getElementById('audioOverlay').addEventListener('click', () => {
+            for (const a of Object.values(SOUNDS)) {
+                a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(() => {});
+            }
+            audioEnabled = true;
+            document.getElementById('audioOverlay').style.display = 'none';
+        });
+
+        function playSound(name) {
+            const s = SOUNDS[name];
+            if (!s || !audioEnabled) return;
+            s.currentTime = 0;
+            s.play().catch(() => {});
+        }
+
+        function fmtTimer(sec) {
+            sec = Math.max(0, Math.floor(sec || 0));
+            return String(Math.floor(sec/60)).padStart(2,'0') + ':' + String(sec%60).padStart(2,'0');
+        }
+
+        function fieldIndex(letter) { return ['A','B','C'].indexOf(letter); }
+
+        function render(state) {
+            if (!state) return;
+            const numFields = state.num_fields || 3;
+            const idx = fieldIndex(FIELD);
+            const inactive = idx < 0 || idx >= numFields;
+            document.getElementById('inactive').style.display = inactive ? 'flex' : 'none';
+            document.getElementById('scoreboard').style.display = (!inactive && state.visible) ? 'block' : 'none';
+            if (inactive) return;
+
+            const fd = (state.fields && state.fields[FIELD]) || {
+                TeamH: state.team_a, TeamG: state.team_b,
+                ScoreH: state.score_a, ScoreG: state.score_b,
+                LogoH: state.logo_a, LogoG: state.logo_b,
+                Penalties: { H: [], G: [] },
+            };
+
+            document.getElementById('teamAName').textContent = fd.TeamH || '';
+            document.getElementById('teamBName').textContent = fd.TeamG || '';
+            document.getElementById('scoreA').textContent = fd.ScoreH ?? 0;
+            document.getElementById('scoreB').textContent = fd.ScoreG ?? 0;
+            document.getElementById('logoA').src = fd.LogoH || '';
+            document.getElementById('logoB').src = fd.LogoG || '';
+            document.getElementById('timer').textContent = fmtTimer(state.Timer);
+            document.getElementById('period').textContent = state.Period || '';
+
+            renderPenalties('H', (fd.Penalties && fd.Penalties.H) || []);
+            renderPenalties('G', (fd.Penalties && fd.Penalties.G) || []);
+        }
+
+        function renderPenalties(side, arr) {
+            const col = document.getElementById(side === 'H' ? 'penH' : 'penG');
+            col.innerHTML = `<h6>${side === 'H' ? 'HOME' : 'GUEST'}</h6>`;
+            for (const p of arr) {
+                const row = document.createElement('div');
+                row.className = 'pen-row' + (p.paused ? ' paused' : '');
+                const playerLabel = p.player ? `#${p.player}` : '—';
+                row.innerHTML = `<span>${playerLabel}</span><span>${fmtTimer(p.remaining)}</span>`;
+                col.appendChild(row);
+            }
+        }
+
+        function handleEvent(m) {
+            if (m.field && m.field !== FIELD) return;
+            if (m.event === 'goal') playSound('goal');
+            else if (m.event === 'siren') playSound('siren');
+            else if (m.event === 'penalty_expired') playSound('penalty_buzz');
+        }
+
+        async function initialFetch() {
+            try {
+                const r = await fetch('/api/scoreboard', { cache: 'no-cache' });
+                if (r.ok) render(await r.json());
+            } catch {}
+        }
+
+        let ws = null;
+        let wsBackoff = 1000;
+
+        function connectWs() {
+            const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const url = `${proto}//${location.host}/ws/public?field=${FIELD}`;
+            ws = new WebSocket(url);
+            ws.onopen = () => { wsBackoff = 1000; };
+            ws.onmessage = (e) => {
+                try {
+                    const m = JSON.parse(e.data);
+                    if (m.type === 'state') render(m.state);
+                    else if (m.type === 'event') handleEvent(m);
+                } catch {}
+            };
+            ws.onclose = () => {
+                setTimeout(connectWs, wsBackoff);
+                wsBackoff = Math.min(wsBackoff * 2, 10000);
+            };
+            ws.onerror = () => {};
+        }
+
+        setInterval(() => {
+            if (!ws || ws.readyState !== WebSocket.OPEN) initialFetch();
+        }, 2000);
+
+        initialFetch();
+        connectWs();
+    </script>
+</body>
+</html>

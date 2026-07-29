@@ -1,0 +1,3483 @@
+*:focus {
+   outline: none;
+}
+
+QMainWindow {
+    background-color: bg_color ;
+}
+
+QToolBar {
+  /*background: bg_color;*/
+  border: 0px solid;
+  opacity: 0;
+  spacing: 5px;
+  padding: 5px 0px;
+  margin: 0px;
+}
+
+QToolBar:horizontal {
+  border-bottom: 1px solid border_tools ;
+}
+
+QToolBar:vertical {
+  border-right: 1px solid  border_tools ;
+}
+
+QToolBar::handle,
+QToolBar::handle:horizontal,
+QToolBar::handle:vertical {
+  image: none;
+  width: 0px;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: transparent;
+}
+
+QToolBar::separator:horizontal {
+  border: none;
+  width: 0px;
+  margin: 0px;
+}
+
+QToolBar::separator:vertical {
+  border: none;
+  height: 0px;
+  margin: 0px;
+}
+
+QToolButton {
+  border: 1px solid transparent;
+  margin: 3px;
+  padding: 5px;
+}
+
+QToolBar QToolButton {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+}
+
+QToolButton:hover {
+  background-color: bg_btn_hover ;
+  border-radius: 5px;
+}
+
+QToolButton:checked,
+#VideoLoopToolButton:checked {
+  background-color: bg_btn_hover ;
+  border: 1px solid btn_border ;
+  border-radius: 5px;
+}
+
+#standartLeftMenu {
+  text-align: center;
+}
+
+#standartLeftMenu > QPushButton {
+  background-color: bg_color ;
+  text-align: left;
+  color: btn_text_menu ;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  padding-left: 12px;
+}
+
+#smallLeftMenu {
+  text-align: center;
+}
+
+#smallLeftMenu > QPushButton {
+  background-color: bg_color ;
+  border: none;
+}
+#PreviewPanel, #TimerGroupButton, #TopText, #CentralBox {
+  background-color: bg_color ;
+  border: none;
+}
+
+#btn_type_one,
+#btn_type_one > QPushButton {
+    border: none;
+    border-radius: 15px;
+}
+
+#btn_type_one:hover {
+    background-color: bg_btn_hover ;
+}
+
+#btn_type_two {
+  text-align: left;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: bg_color ;
+  color: btn_text_menu ;
+}
+
+#btn_type_three {
+    border: none;
+    border-radius: 25px;
+}
+
+#previewLabel {
+    margin: 5px 5px;
+}
+
+#btn_PreviewPanel {
+    background-color: bg_color ;
+    border: 1px solid btn_border ;
+    border-radius: 5px;
+    margin: 5px 5px;
+}
+
+#btn_PreviewPanel:hover {
+    background-color: bg_btn_hover ;
+}
+
+#AppGroupButton, #GameGroupButton, #WatchGroupButton, #HomeGroup, #GuestGroup, #PeriodGroup {
+  border: none;
+  text-transform: uppercase;
+  font-family: Impact;
+}
+
+#AppGroupButton > QPushButton, #GameGroupButton > QPushButton, #WatchGroupButton > QPushButton, #btn_Timer {
+    background-color: btn_bg ;
+    font-size: 14px;
+    border: 1px solid btn_border ;
+    border-radius: 5px;
+    color: btn_text_menu ;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 1px;
+}
+
+#AppGroupButton > QPushButton:hover, #GameGroupButton > QPushButton:hover, #WatchGroupButton > QPushButton:hover, #btn_Timer:hover {
+    background-color: bg_btn_hover ;
+    color: btn_text_menu ;
+}
+
+#Header {
+    text-transform: uppercase;
+    background-color: bg_color ;
+    font-size: 14px;
+    border: 1px solid btn_border ;
+    border-radius: 5px;
+    color: btn_text_menu ;
+    padding: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#btn_Timer {
+    text-align: center;
+    background-color: btn_timer ;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: btn_timer_text ;
+}
+
+#btn_Timer:disabled {
+    background-color: bg_color ;
+    color: btn_timer_text_dis ;
+    font-weight: normal;
+}
+
+#PlusButton {
+    text-align: center;
+    background-color: btn_timer ;
+    text-transform: uppercase;
+    font-family: Banana Brick;
+    color: btn_timer_text ;
+}
+
+#PlusButton:disabled {
+    background-color: bg_color ;
+    color: btn_timer_text_dis ;
+    font-weight: normal;
+    font-family: Banana Brick;
+}
+
+#MinusButton {
+    text-align: center;
+    background-color: btn_minus ;
+    text-transform: uppercase;
+    font-family: Banana Brick;
+    color: btn_timer_text ;
+}
+
+#MinusButton:disabled {
+    background-color: bg_color ;
+    color: btn_timer_text_dis ;
+    font-weight: normal;
+    font-family: Banana Brick;
+}
+
+#TournamentLabel {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: a_Bremen;
+    color: Text_1 ;
+}
+
+#TextLable {
+    text-transform: uppercase;
+    font-family: Impact;
+    font-size: 20px;
+    text-decoration: underline;
+    color: Text_1 ;
+}
+
+#SaS {
+    background-color: #4a5568;
+    text-transform: uppercase;
+    color: #FFF;
+    border-radius: 5px;
+    font-family: Seven Segment;
+    font-size: 28px;
+}
+
+#SmallPenalty {
+    background-color: #4a5568;
+    text-transform: uppercase;
+    color: #FFF;
+    border-radius: 5px;
+    font-family: Seven Segment;
+    font-size: 16px;
+}
+
+#SmallPenaltyBtn {
+    background-color: btn_timer ;
+    text-transform: uppercase;
+    color: btn_timer_text ;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 20px;
+}
+
+#PenaltyBtn {
+    background-color: btn_timer ;
+    text-transform: uppercase;
+    color: btn_timer_text ;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 20px;
+}
+
+#PenaltyBtnMinus {
+    background-color: btn_minus ;
+    text-transform: uppercase;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 0;
+    font-size: 20px;
+}
+
+#PenaltyBtnMinus:disabled, #PenaltyBtn:disabled {
+    background-color: bg_color ;
+    border: 1px solid btn_border ;
+    color: btn_timer_text_dis ;
+}
+
+#TrekBox {
+    background-color: #4a5568;
+    border-radius: 5px;
+}
+
+#TrekBox > QLabel {
+    text-transform: uppercase;
+    color: #FFF;
+    font-family: Seven Segment;
+    font-size: 12px;
+}
+
+#AudioSeekSlider {
+    min-height: 16px;
+    max-height: 18px;
+}
+
+#AudioSeekSlider::groove:horizontal {
+    height: 5px;
+    background: #2d3748;
+    border-radius: 3px;
+}
+
+#AudioSeekSlider::sub-page:horizontal {
+    background: #38a169;
+    border-radius: 3px;
+}
+
+#AudioSeekSlider::handle:horizontal {
+    width: 12px;
+    height: 12px;
+    margin: -4px 0;
+    background: #ecc94b;
+    border: 2px solid #1a202c;
+    border-radius: 6px;
+}
+
+#AudioSeekSlider::handle:horizontal:hover {
+    background: #f6e05e;
+}
+
+#AudioTrekTime,
+#AudioTrekDuration {
+    color: #e2e8f0;
+    font-family: Seven Segment;
+    font-size: 12px;
+}
+
+#ListAudio,
+#ListVideo,
+#ListLogHome,
+#ListLogGuest {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    gridline-color: transparent;
+    outline: none;
+    selection-background-color: bg_btn_hover ;
+    selection-color: Text_1 ;
+    alternate-background-color: award_card ;
+}
+
+#ListAudio::item,
+#ListVideo::item,
+#ListLogHome::item,
+#ListLogGuest::item {
+    padding: 4px 8px;
+    border: none;
+}
+
+#ListAudio::item:selected,
+#ListVideo::item:selected,
+#ListLogHome::item:selected,
+#ListLogGuest::item:selected {
+    background-color: bg_btn_hover ;
+    color: Text_1 ;
+}
+
+#ListAudio QHeaderView::section,
+#ListVideo QHeaderView::section,
+#ListLogHome QHeaderView::section,
+#ListLogGuest QHeaderView::section {
+    background-color: award_card ;
+    color: Text_1 ;
+    border: none;
+    border-bottom: 1px solid btn_border ;
+    padding: 6px 8px;
+    font-weight: 700;
+}
+
+#ListAudio QHeaderView::section:horizontal:first,
+#ListVideo QHeaderView::section:horizontal:first,
+#ListLogHome QHeaderView::section:horizontal:first,
+#ListLogGuest QHeaderView::section:horizontal:first {
+    border-top-left-radius: 8px;
+}
+
+#ListAudio QHeaderView::section:horizontal:last,
+#ListVideo QHeaderView::section:horizontal:last,
+#ListLogHome QHeaderView::section:horizontal:last,
+#ListLogGuest QHeaderView::section:horizontal:last {
+    border-top-right-radius: 8px;
+}
+
+#ListAudio QScrollBar:vertical,
+#ListVideo QScrollBar:vertical,
+#ListLogHome QScrollBar:vertical,
+#ListLogGuest QScrollBar:vertical {
+    width: 10px;
+    background: transparent;
+    margin: 2px;
+}
+
+#ListAudio QScrollBar::handle:vertical,
+#ListVideo QScrollBar::handle:vertical,
+#ListLogHome QScrollBar::handle:vertical,
+#ListLogGuest QScrollBar::handle:vertical {
+    background: btn_border ;
+    border-radius: 5px;
+    min-height: 24px;
+}
+
+#ListAudio QScrollBar::add-line:vertical,
+#ListAudio QScrollBar::sub-line:vertical,
+#ListVideo QScrollBar::add-line:vertical,
+#ListVideo QScrollBar::sub-line:vertical,
+#ListLogHome QScrollBar::add-line:vertical,
+#ListLogHome QScrollBar::sub-line:vertical,
+#ListLogGuest QScrollBar::add-line:vertical,
+#ListLogGuest QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+QTabWidget {
+    background-color: bg_color ;
+    border: none;
+}
+
+QTabBar {
+    font-size: 14px;
+}
+
+QTabBar::tab {
+    color: text_tabbar ;
+    border: 0px;
+}
+
+QTabBar::tab:bottom,
+QTabBar::tab:top {
+    padding: 0 5px;
+    height: 28px;
+}
+
+QTabBar::tab:left,
+QTabBar::tab:right {
+    padding: 5px 0;
+    width: 28px;
+}
+
+QTabBar::tab:top:selected,
+QTabBar::tab:top:hover {
+    color: text_tabbar ;
+    border-bottom: 3px solid border_tabbar ;
+}
+
+QTabBar::tab:bottom:selected,
+QTabBar::tab:bottom:hover {
+    color: text_tabbar ;
+    border-top: 3px solid border_tabbar ;
+}
+
+QTabBar::tab:right:selected,
+QTabBar::tab:right:hover {
+    color: text_tabbar ;
+    border-left: 3px solid border_tabbar ;
+}
+
+QTabBar::tab:left:selected,
+QTabBar::tab:left:hover {
+    color: text_tabbar ;
+    border-right: 3px solid border_tabbar ;
+}
+
+QTabBar QToolButton:hover,
+QTabBar QToolButton {
+    border: 0px;
+    background-color: Color_2 ;
+}
+
+QTreeView QLineEdit,
+QTableView QLineEdit,
+QListView QLineEdit {
+    color: Text_1 ;
+    background-color: Color_2 ;
+    border: 1px solid btn_border ;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+#networkGroupBox {
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid btn_border ;
+    border-radius: 8px;
+    margin-top: 1ex;
+    padding-top: 10px;
+    color: Text_1 ;
+}
+
+#networkGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+}
+
+#ipFrame {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#sectionTitleLabel {
+    font-size: 13px;
+    color: Text_2 ;
+    padding-bottom: 5px;
+}
+
+#ipComboBox {
+    background-color: Color_2 ;
+    border: 2px solid btn_border ;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    min-width: 200px;
+    color: Text_1 ;
+}
+
+#ipComboBox:hover {
+    border-color: award_accent ;
+    background-color: Color_3 ;
+}
+
+#ipComboBox:focus {
+    border-color: #42a5f5;
+    outline: none;
+}
+
+#ipComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left-width: 1px;
+    border-left-color: btn_border ;
+    border-left-style: solid;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#ipComboBox::down-arrow {
+    image: url(down_arrow.png);
+    width: 12px;
+    height: 12px;
+}
+
+#ipComboBox QAbstractItemView {
+    background-color: Color_2 ;
+    border: 2px solid btn_border ;
+    border-radius: 8px;
+    selection-background-color: #1976D2;
+    selection-color: #ffffff;
+    outline: none;
+    padding: 4px;
+    color: Text_1 ;
+}
+
+#ipComboBox QAbstractItemView::item {
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 2px 5px;
+}
+
+#ipComboBox QAbstractItemView::item:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+    color: #90caf9;
+}
+
+#ipComboBox QAbstractItemView::item:selected {
+    background-color: #1976D2;
+    color: white;
+}
+
+#ipComboBox[changed="true"] {
+    border-color: #66bb6a;
+    background-color: rgba(76, 175, 80, 0.12);
+}
+
+#currentIpFrame {
+    background-color: rgba(76, 175, 80, 0.12);
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#currentIpLabel {
+    color: #81c784;
+    font-weight: bold;
+}
+
+#currentIpValue {
+    color: #c8e6c9;
+    background-color: rgba(46, 125, 50, 0.35);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+#infoLabel {
+    color: Text_2 ;
+    font-size: 11px;
+    font-style: italic;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+}
+
+#separatorLine {
+    background-color: btn_border ;
+    max-height: 1px;
+}
+
+#infoFrame {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#infoTitleLabel {
+    font-size: 13px;
+    font-weight: bold;
+    color: Text_1 ;
+    padding-bottom: 5px;
+}
+
+#hostValueLabel, #portValueLabel {
+    background-color: Color_2 ;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid btn_border ;
+    font-family: monospace;
+    color: Text_1 ;
+}
+
+#urlValueLabel {
+    background-color: rgba(33, 150, 243, 0.12);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(100, 181, 246, 0.5);
+    font-family: monospace;
+    color: #90caf9;
+}
+
+#dateLabel {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: Text_1 ;
+}
+
+#dateButton {
+    border: 1px solid btn_border ;
+    min-width: 110px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 5px;
+    background-color: btn_bg ;
+    color: Text_1 ;
+}
+
+#refreshButton {
+    border: 1px solid btn_border ;
+    min-width: 110px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 5px;
+    background-color: btn_bg ;
+    color: Text_1 ;
+}
+
+#exportButton {
+    border: 1px solid btn_border ;
+    min-width: 110px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px 5px;
+    background-color: btn_bg ;
+    color: Text_1 ;
+}
+
+QCalendarWidget {
+    background-color: Color_2 ;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: Text_1 ;
+}
+
+QCalendarWidget QTableView {
+    selection-background-color: #1976D2;
+    selection-color: white;
+    background-color: Color_2 ;
+    color: Text_1 ;
+}
+
+QCalendarWidget QHeaderView::section {
+    background-color: Color_3 ;
+    padding: 4px;
+    border: none;
+    font-weight: bold;
+    color: Text_1 ;
+}
+
+#leftMenuWidget {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#leftMenuWidget QPushButton {
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#leftMenuWidget QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+#leftMenuWidget QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* PenaltySimplifiedDialog */
+#PenaltySimplifiedDialog {
+    background-color: #2d2d30;
+}
+
+#PenaltySimplifiedTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#PenaltySimplifiedCard {
+    background-color: #3e3e42;
+    border: 1px solid #4e4e52;
+    border-radius: 12px;
+}
+
+#PenaltySimplifiedCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#PenaltySimplifiedNumber {
+    font-size: 28px;
+    font-weight: bold;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+    color: #ffffff;
+    padding: 4px;
+}
+
+#PenaltySimplifiedNumber:focus {
+    border-color: #0078D4;
+}
+
+#PenaltySimplifiedBtn {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 12px;
+}
+
+#PenaltySimplifiedBtn:hover {
+    background-color: #0078D4;
+    border-color: #0078D4;
+    color: #ffffff;
+}
+
+#PenaltySimplifiedBtn:pressed {
+    background-color: #005a9e;
+    border-color: #005a9e;
+}
+
+#PenaltySimplifiedBtnTeam {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 12px;
+}
+
+#PenaltySimplifiedBtnTeam:hover {
+    background-color: #4e4e52;
+}
+
+#PenaltySimplifiedBtnTeam:checked {
+    background-color: #0078D4;
+    border-color: #0078D4;
+    color: #ffffff;
+}
+
+/* EnterNameTeamDialog */
+#EnterNameTeamDialog {
+    background-color: #2d2d30;
+}
+
+#EnterNameTeamTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#EnterNameTeamCard {
+    background-color: #3e3e42;
+    border: 1px solid #4e4e52;
+    border-radius: 12px;
+}
+
+#EnterNameTeamCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#EnterNameTeamField {
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+    color: #ffffff;
+    padding: 4px 12px;
+}
+
+#EnterNameTeamField:focus {
+    border-color: #0078D4;
+}
+
+/* EditActivePenaltyDialog */
+#EditActivePenaltyDialog {
+    background-color: #2d2d30;
+}
+
+#EditActivePenaltyTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#EditActivePenaltyCard {
+    background-color: #3e3e42;
+    border: 1px solid #4e4e52;
+    border-radius: 12px;
+}
+
+#EditActivePenaltyCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#EditActivePenaltyNumber,
+#EditActivePenaltyTime {
+    font-size: 28px;
+    font-weight: bold;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+    color: #ffffff;
+    padding: 4px;
+}
+
+#EditActivePenaltyNumber:focus,
+#EditActivePenaltyTime:focus {
+    border-color: #0078D4;
+}
+
+#EditActivePenaltyColon {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    min-width: 16px;
+}
+
+#EditActivePenaltyCombo {
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+    color: #ffffff;
+    padding: 4px 10px;
+}
+
+#EditActivePenaltyCombo:focus {
+    border-color: #0078D4;
+}
+
+#EditActivePenaltyBtnTeam {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 12px;
+}
+
+#EditActivePenaltyBtnTeam:hover {
+    background-color: #4e4e52;
+}
+
+#EditActivePenaltyBtnTeam:checked {
+    background-color: #0078D4;
+    border-color: #0078D4;
+    color: #ffffff;
+}
+
+/* ProtocolDialog */
+#ProtocolDialog {
+    background-color: #2d2d30;
+}
+
+#ProtocolTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#ProtocolCard {
+    background-color: #3e3e42;
+    border: 1px solid #555555;
+    border-radius: 12px;
+}
+
+#ProtocolCaption {
+    font-size: 13px;
+    font-weight: bold;
+    color: #c8c8c8;
+}
+
+#ProtocolField {
+    font-size: 14px;
+    border: 2px solid #555555;
+    border-radius: 8px;
+    background-color: #2d2d30;
+    color: #ffffff;
+    padding: 4px 8px;
+}
+
+#ProtocolField:focus {
+    border-color: #0078D4;
+}
+
+#ProtocolLogoPreview {
+    background-color: #2d2d30;
+    border: 2px dashed #555555;
+    border-radius: 10px;
+    color: #888888;
+}
+
+#ProtocolLogoPath {
+    font-size: 12px;
+    color: #c8c8c8;
+}
+
+#ProtocolBtn {
+    background-color: #3e3e42;
+    border: 2px solid #555555;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 4px 12px;
+}
+
+#ProtocolBtn:hover {
+    border-color: #0078D4;
+    color: #0078D4;
+}
+
+#ProtocolBtnPrimary {
+    background-color: #0078D4;
+    border: 2px solid #0078D4;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 4px 16px;
+}
+
+#ProtocolBtnPrimary:hover {
+    background-color: #106ebe;
+    border-color: #106ebe;
+}
+
+#ProtocolScroll {
+    background: transparent;
+    border: none;
+}
+
+/* SportSelectDialog */
+#SportSelectDialog {
+    background-color: #2d2d30;
+}
+
+#SportDialogTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 15px 0px;
+}
+
+#SportDialogSubtitle {
+    font-size: 13px;
+    color: #9ba3b5;
+    margin-bottom: 5px;
+}
+
+#SportDialogLine {
+    background-color: #3e3e42;
+    max-height: 2px;
+    min-height: 2px;
+    margin: 0px 10px;
+}
+
+#SportButton_hockey,
+#SportButton_football,
+#SportButton_mini_football,
+#SportButton_basketball,
+#SportButton_tennis,
+#SportButton_volleyball,
+#SportButton_ultimate {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-radius: 14px;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+#SportButton_hockey:hover {
+    background-color: #0078D4;
+    border-color: #0078D4;
+    color: white;
+}
+
+#SportButton_football:hover {
+    background-color: #107C10;
+    border-color: #107C10;
+    color: white;
+}
+
+#SportButton_mini_football:hover {
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+    color: white;
+}
+
+#SportButton_basketball:hover {
+    background-color: #E81123;
+    border-color: #E81123;
+    color: white;
+}
+
+#SportButton_tennis:hover {
+    background-color: #8E8CD8;
+    border-color: #8E8CD8;
+    color: white;
+}
+
+#SportButton_volleyball:hover {
+    background-color: #00B294;
+    border-color: #00B294;
+    color: white;
+}
+
+#SportButton_ultimate:hover {
+    background-color: #F7630C;
+    border-color: #F7630C;
+    color: white;
+}
+
+#SportButton_hockey:pressed,
+#SportButton_football:pressed,
+#SportButton_mini_football:pressed,
+#SportButton_basketball:pressed,
+#SportButton_tennis:pressed,
+#SportButton_volleyball:pressed,
+#SportButton_ultimate:pressed {
+    opacity: 0.8;
+}
+
+#SportDialogCancelButton {
+    background-color: #3e3e42;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+#SportDialogCancelButton:hover {
+    background-color: #4e4e52;
+}
+
+#SportDialogCancelButton:pressed {
+    background-color: #2d2d30;
+}
+/* About диалог - общие стили */
+#AboutContainer {
+    background-color: rgba(32, 32, 32, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#AboutTitleBar {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+#AboutTitleLabel {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+#AboutCloseButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #9BA3B5;
+}
+
+#AboutCloseButton:hover {
+    background-color: #E81123;
+    color: white;
+}
+
+#AboutAppName {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+#AboutSeparator {
+    background-color: rgba(255, 255, 255, 0.1);
+    max-height: 1px;
+}
+
+#AboutInfoLabel {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9BA3B5;
+}
+
+#AboutInfoValue {
+    font-size: 13px;
+    color: #FFFFFF;
+}
+
+#AboutVersionLabel {
+    font-size: 12px;
+    color: #6C757D;
+    margin-top: 10px;
+}
+
+#AboutLicenseInput {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+#AboutLicenseInput:focus {
+    border: 1px solid #0078D4;
+}
+
+#AboutOkButton {
+    background-color: #0078D4;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+#AboutOkButton:hover {
+    background-color: #106EBE;
+}
+
+#AboutOkButton:pressed {
+    background-color: #005A9E;
+}
+
+#AboutLicenseButton {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+#AboutLicenseButton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#AboutActivateButton {
+    background-color: #107C10;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+}
+
+#AboutActivateButton:hover {
+    background-color: #0E6A0E;
+}
+#AboutContainer {
+    background-color: rgba(32, 32, 32, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* LicenseDialog */
+#LicenseContainer {
+    background-color: #2a2d32;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#LicenseTitleBar {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+#LicenseTitleLabel {
+    color: #e8eaed;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#LicenseCloseButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #9ba3b5;
+}
+
+#LicenseCloseButton:hover {
+    background-color: #e81123;
+    color: white;
+}
+
+#LicenseTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e8eaed;
+    margin: 10px 0;
+}
+
+#LicenseInfoFrame {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#LicenseInfoLabel {
+    color: Text_2 ;
+    font-size: 12px;
+}
+
+#LicenseInfoValue {
+    color: #e8eaed;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#LicenseCopyUuidButton {
+    background-color: Color_2;
+    color: Text_1;
+    border: 1px solid btn_border;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+#LicenseCopyUuidButton:hover {
+    background-color: rgba(100, 181, 246, 0.18);
+    border: 1px solid #64b5f6;
+}
+
+#LicenseInfoText {
+    color: Text_2 ;
+    font-size: 12px;
+}
+
+#LicenseKeyInput {
+    background-color: Color_2 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    color: Text_1 ;
+}
+
+#LicenseKeyInput:focus {
+    border: 1px solid #64b5f6;
+    outline: none;
+}
+
+#LicenseTrialButton {
+    background-color: #546e7a;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#LicenseTrialButton:hover {
+    background-color: #607d8b;
+}
+
+#LicenseActivateButton {
+    background-color: #1976d2;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+#LicenseActivateButton:hover {
+    background-color: #1565c0;
+}
+
+#LicenseCancelButton {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: Text_2 ;
+}
+
+#LicenseCancelButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#LicenseActivatedLabel {
+    color: #66bb6a;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#VolleyballSetDialog {
+    background-color: #2a2d32;
+    border-radius: 12px;
+}
+
+#VolleyballSetDialogTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e8eaed;
+    padding: 4px 8px;
+}
+
+#VolleyballSetDialogText {
+    font-size: 16px;
+    color: #d0d4da;
+    padding: 12px 16px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#VolleyballSetDialogContinue {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background-color: #3d4249;
+    color: #e8eaed;
+    border: 1px solid #555b63;
+}
+
+#VolleyballSetDialogContinue:hover {
+    background-color: #4a5058;
+}
+
+#VolleyballSetDialogFinish {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: 1px solid #256628;
+}
+
+#VolleyballSetDialogFinish:hover {
+    background-color: #388e3c;
+}
+
+#VolleyballMainSets_style1,
+#VolleyballMainSets_style2,
+#VolleyballMainSets_style3 {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+}
+
+#VolleyballMainSets_style1 {
+    min-height: 72px;
+}
+
+#VolleyballMainSets_style2 {
+    min-height: 76px;
+}
+
+#VolleyballMainSets_style3 {
+    min-height: 52px;
+}
+
+#VolleyballSetHomeScore,
+#VolleyballSetGuestScore {
+    font-family: Seven Segment;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e8eaed;
+}
+
+#VolleyballMainSets_style1 #VolleyballSetHomeScore {
+    background-color: rgba(144, 238, 144, 0.35);
+    color: #c8e6c9;
+    border-radius: 5px;
+    padding: 4px 8px;
+    min-width: 28px;
+}
+
+#VolleyballMainSets_style1 #VolleyballSetGuestScore {
+    background-color: rgba(222, 184, 135, 0.35);
+    color: #f5deb3;
+    border-radius: 5px;
+    padding: 4px 8px;
+    min-width: 28px;
+}
+
+#VolleyballMainSets_style1 #VolleyballSetHomeScore[setActive="true"] {
+    background-color: rgba(92, 184, 92, 0.55);
+    color: #ffffff;
+}
+
+#VolleyballMainSets_style1 #VolleyballSetGuestScore[setActive="true"] {
+    background-color: rgba(201, 149, 106, 0.65);
+    color: #ffffff;
+}
+
+#VolleyballSetCard {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    min-width: 44px;
+}
+
+#VolleyballSetCard[setState="done"] {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+}
+
+#VolleyballSetCard[setState="active"] {
+    background-color: rgba(46, 125, 50, 0.25);
+    border: 2px solid #66bb6a;
+}
+
+#VolleyballSetCard[setState="future"] {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    color: #6b7280;
+}
+
+#VolleyballSetsRibbon {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+#VolleyballSetCompact {
+    font-family: Seven Segment;
+    font-size: 17px;
+    font-weight: bold;
+    color: #e8eaed;
+    padding: 6px 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#VolleyballSetCompact[setState="active"] {
+    background-color: rgba(46, 125, 50, 0.28);
+    color: #c8e6c9;
+    border-bottom: 2px solid #66bb6a;
+}
+
+#VolleyballSetCompact[setState="done"] {
+    color: #b0b8c0;
+}
+
+#VolleyballSetCompact[setState="future"] {
+    color: #6b7280;
+}
+
+/* Диалог выбора колонтитулов */
+#headersHintLabel {
+    color: Text_2 ;
+    font-size: 13px;
+    padding-bottom: 2px;
+}
+
+#headersGroupBox {
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid border_tools ;
+    border-radius: 8px;
+    margin-top: 1ex;
+    padding-top: 10px;
+    color: Text_1 ;
+}
+
+#headersGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+}
+
+#headersSearchInput,
+#headersInput {
+    background-color: Color_2 ;
+    border: 2px solid border_tools ;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+    color: Text_1 ;
+}
+
+#headersSearchInput:hover,
+#headersInput:hover {
+    border-color: #64b5f6;
+}
+
+#headersSearchInput:focus,
+#headersInput:focus {
+    border-color: #42a5f5;
+}
+
+#headersListWidget {
+    border: 2px solid border_tools ;
+    border-radius: 8px;
+    padding: 4px;
+    font-size: 14px;
+    outline: none;
+    background-color: Color_1 ;
+    color: Text_1 ;
+}
+
+#headersListWidget::item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin: 2px 4px;
+}
+
+#headersListWidget::item:alternate {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+#headersListWidget::item:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+    color: #90caf9;
+}
+
+#headersListWidget::item:selected {
+    background-color: #1976D2;
+    color: #ffffff;
+}
+
+#headersPreviewLabel {
+    background-color: rgba(33, 150, 243, 0.12);
+    border: 1px solid rgba(100, 181, 246, 0.5);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: Text_1 ;
+}
+
+#headersDateButton {
+    border: 1px solid #64b5f6;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: rgba(33, 150, 243, 0.15);
+    color: #90caf9;
+    min-width: 140px;
+}
+
+#headersDateButton:hover {
+    background-color: rgba(33, 150, 243, 0.28);
+    border-color: #42a5f5;
+}
+
+#headersAddButton,
+#headersDateButton,
+#hideButton,
+#deleteButton {
+    border: 1px solid border_tools ;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 16px;
+    background-color: Color_2 ;
+    color: Text_1 ;
+}
+
+#headersAddButton:hover,
+#headersDateButton:hover,
+#hideButton:hover,
+#deleteButton:hover {
+    background-color: Color_3 ;
+    border-color: #64b5f6;
+}
+
+#deleteButton {
+    color: #ef5350;
+    border-color: rgba(239, 83, 80, 0.5);
+}
+
+#deleteButton:hover {
+    background-color: rgba(239, 83, 80, 0.15);
+}
+
+#hideButton {
+    color: #ffb74d;
+    border-color: rgba(255, 183, 77, 0.5);
+}
+
+#hideButton:hover {
+    background-color: rgba(255, 183, 77, 0.12);
+}
+
+#applyButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 15px;
+}
+
+#penaltyButton {
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 15px;
+    background-color: btn_bg ;
+    color: Text_1 ;
+}
+
+#applyButton:hover {
+    background-color: #45a049;
+}
+
+#applyButton:pressed {
+    background-color: #3d8b40;
+}
+
+#applyButton:disabled {
+    background-color: #4a5058;
+    color: #8a9199;
+}
+
+#closeButton {
+    background-color: #546e7a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 15px;
+}
+
+#closeButton:hover {
+    background-color: #607d8b;
+}
+
+#closeButton:pressed {
+    background-color: #455a64;
+}
+
+/* Award ceremony dialog */
+#awardCeremonyDialog {
+    background-color: bg_color ;
+}
+
+#awardHeaderTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: Text_1 ;
+}
+
+#awardHeaderHint {
+    font-size: 12px;
+    color: Text_2 ;
+    padding-bottom: 4px;
+}
+
+#awardSeparator {
+    background-color: btn_border ;
+    max-height: 1px;
+    border: none;
+}
+
+#awardPlacesScroll {
+    background: transparent;
+    border: none;
+}
+
+#awardPlacesScroll > QWidget > QWidget {
+    background: transparent;
+}
+
+#awardPlaceRow {
+    background-color: award_card ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+    margin-bottom: 6px;
+}
+
+#awardPlaceBadge {
+    background-color: btn_border ;
+    color: Text_1 ;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+#awardPlaceBadge[medal="1"] {
+    background-color: medal_gold ;
+    color: medal_gold_text ;
+}
+
+#awardPlaceBadge[medal="2"] {
+    background-color: medal_silver ;
+    color: medal_silver_text ;
+}
+
+#awardPlaceBadge[medal="3"] {
+    background-color: medal_bronze ;
+    color: medal_bronze_text ;
+}
+
+#awardPlaceTitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: Text_2 ;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#awardTeamField {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+#awardMusicField {
+    background-color: bg_color ;
+    color: Text_2 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    padding: 4px 10px;
+    min-width: 120px;
+    max-width: 180px;
+}
+
+#awardIconBtn {
+    background-color: transparent;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+}
+
+#awardIconBtn:hover:enabled {
+    background-color: Color_3 ;
+    border-color: award_accent ;
+}
+
+#awardIconBtn:disabled {
+    opacity: 0.35;
+}
+
+#awardFooter {
+    background-color: award_card ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+}
+
+#awardShowPodiumBtn {
+    background-color: award_success ;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#awardShowPodiumBtn:hover:enabled {
+    background-color: award_success_hover ;
+}
+
+#awardShowPodiumBtn:disabled {
+    background-color: btn_border ;
+    color: Text_2 ;
+}
+
+#awardHidePodiumBtn {
+    background-color: award_danger ;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#awardHidePodiumBtn:hover:enabled {
+    background-color: award_danger_hover ;
+}
+
+#awardHidePodiumBtn:disabled {
+    background-color: btn_border ;
+    color: Text_2 ;
+}
+
+#awardCloseBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#awardCloseBtn:hover {
+    background-color: Color_3 ;
+}
+
+#awardBgLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: Text_2 ;
+    text-transform: uppercase;
+}
+
+#awardBgField {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+#awardBgBrowseBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    font-weight: 700;
+    min-height: 60px;
+    max-height: 60px;
+    padding: 0 14px;
+}
+
+#awardBgBrowseBtn:hover {
+    background-color: Color_3 ;
+    border-color: award_accent ;
+}
+
+#awardBgResetBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0 14px;
+    min-height: 40px;
+    max-height: 40px;
+}
+
+#awardBgResetBtn:hover {
+    background-color: Color_3 ;
+}
+
+#awardFanBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 0px;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 0;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 0px;
+}
+
+#awardFanBtn:hover {
+    background-color: Color_3 ;
+    border-color: award_accent ;
+}
+
+#awardFanBtn[configured="true"] {
+    border-color: award_accent ;
+}
+
+#awardFanBtn[medal="1"][configured="true"] {
+    color: #ffd700;
+}
+
+#awardFanBtn[medal="2"][configured="true"] {
+    color: #c0c0c0;
+}
+
+#awardFanBtn[medal="3"][configured="true"] {
+    color: #cd7f32;
+}
+
+#awardFanBtn:disabled {
+    opacity: 0.35;
+}
+
+/* Teams selection dialog */
+#teamsDialog {
+    background-color: bg_color ;
+}
+
+#teamsHeaderTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: Text_1 ;
+}
+
+#teamsHeaderHint {
+    font-size: 12px;
+    color: Text_2 ;
+    padding-bottom: 4px;
+}
+
+#teamsSeparator {
+    background-color: btn_border ;
+    max-height: 1px;
+    border: none;
+}
+
+#teamsFormCard,
+#teamsPreviewCard {
+    background-color: award_card ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+}
+
+#teamsFieldLabel {
+    font-size: 11px;
+    font-weight: 600;
+    color: Text_2 ;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#teamsCombo {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+#teamsCombo:hover {
+    border-color: award_accent ;
+}
+
+#teamsCombo:focus {
+    border-color: award_accent ;
+}
+
+#teamsCombo::drop-down {
+    border: none;
+    width: 24px;
+}
+
+#teamsCombo QAbstractItemView {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    selection-background-color: bg_btn_hover ;
+    selection-color: Text_1 ;
+    outline: none;
+}
+
+#teamsLogoPreview {
+    background-color: bg_color ;
+    border: 1px solid btn_border ;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+#teamsPreviewName {
+    font-size: 16px;
+    font-weight: 700;
+    color: Text_1 ;
+}
+
+#teamsPreviewMeta {
+    font-size: 12px;
+    color: Text_2 ;
+}
+
+#teamsFooter {
+    background-color: award_card ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+}
+
+#teamsYesBtn {
+    background-color: award_success ;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#teamsYesBtn:hover:enabled {
+    background-color: award_success_hover ;
+}
+
+#teamsYesBtn:disabled {
+    background-color: btn_border ;
+    color: Text_2 ;
+}
+
+#teamsNoBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#teamsNoBtn:hover {
+    background-color: bg_btn_hover ;
+}
+
+/* Tournament table dialog */
+#tournamentTableDialog {
+    background-color: bg_color ;
+}
+
+#tournamentTableBgDialog {
+    background-color: bg_color ;
+}
+
+#tournamentTableBgPreview {
+    background-color: award_card ;
+    color: Text_2 ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+#tournamentTableTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: Text_1 ;
+}
+
+#tournamentTableHint {
+    font-size: 12px;
+    color: Text_2 ;
+    padding-bottom: 4px;
+}
+
+#tournamentTableSectionTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: Text_1 ;
+    padding-top: 2px;
+}
+
+#tournamentTeamLocationField {
+    background-color: award_card ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+#tournamentTableSeparator {
+    background-color: btn_border ;
+    max-height: 1px;
+    border: none;
+}
+
+#tournamentTableEditor {
+    background-color: bg_color ;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+    gridline-color: btn_border ;
+    selection-background-color: bg_btn_hover ;
+    selection-color: Text_1 ;
+}
+
+#tournamentTableEditor QHeaderView::section {
+    background-color: award_card ;
+    color: Text_1 ;
+    border: none;
+    border-bottom: 1px solid btn_border ;
+    padding: 6px;
+    font-weight: 700;
+}
+
+#tournamentTableToolBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 4px 12px;
+}
+
+#tournamentTableToolBtn:hover {
+    background-color: bg_btn_hover ;
+    border-color: award_accent ;
+}
+
+#tournamentTableFooter {
+    background-color: award_card ;
+    border: 1px solid btn_border ;
+    border-radius: 10px;
+}
+
+#tournamentTableSaveBtn {
+    background-color: award_success ;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#tournamentTableSaveBtn:hover {
+    background-color: award_success_hover ;
+}
+
+#tournamentTableCancelBtn {
+    background-color: transparent;
+    color: Text_1 ;
+    border: 1px solid btn_border ;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0 16px;
+}
+
+#tournamentTableCancelBtn:hover {
+    background-color: bg_btn_hover ;
+}
+
+/* Match statistics on tablo (classic — та же палитра, что modern) */
+QGroupBox#matchStatisticsOverlay {
+    border: none;
+    background: transparent;
+}
+
+QWidget#matchStatisticsClassicPage {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 rgba(8, 14, 28, 235), stop:1 rgba(4, 8, 18, 245));
+    border: none;
+}
+
+#matchStatisticsTitle {
+    color: #FFFFFF;
+    background: transparent;
+    font-weight: 700;
+}
+
+#matchStatisticsTeamTitleHome {
+    color: #00E5FF;
+    background: transparent;
+    font-weight: 800;
+}
+
+#matchStatisticsTeamTitleGuest {
+    color: #D4D956;
+    background: transparent;
+    font-weight: 800;
+}
+
+QTableWidget#matchStatisticsTabloTableHome,
+QTableWidget#matchStatisticsTabloTableGuest {
+    background-color: rgba(12, 18, 30, 170);
+    color: #F2F6FF;
+    border: 1px solid rgba(255, 255, 255, 35);
+    border-radius: 14px;
+    gridline-color: transparent;
+    outline: none;
+    alternate-background-color: rgba(12, 18, 30, 170);
+}
+
+QTableWidget#matchStatisticsTabloTableHome QHeaderView::section {
+    background-color: #00B8D4;
+    color: #FFFFFF;
+    border: none;
+    border-bottom: 2px solid #7AF0FF;
+    padding: 8px 8px;
+    font-weight: 800;
+}
+
+QTableWidget#matchStatisticsTabloTableGuest QHeaderView::section {
+    background-color: #C4C832;
+    color: #1A1800;
+    border: none;
+    border-bottom: 2px solid #F0F07A;
+    padding: 8px 8px;
+    font-weight: 800;
+}
+
+QTableWidget#matchStatisticsTabloTableHome::item,
+QTableWidget#matchStatisticsTabloTableGuest::item {
+    padding: 2px 8px;
+    border: none;
+    background-color: transparent;
+}
+
+QTableWidget#matchStatisticsTabloTableHome::item:alternate,
+QTableWidget#matchStatisticsTabloTableGuest::item:alternate {
+    background-color: transparent;
+}
+
+/* Match statistics modern v2 (scoreboard) */
+QWidget#matchStatisticsModernPage {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 rgba(8, 14, 28, 235), stop:1 rgba(4, 8, 18, 245));
+    border: none;
+}
+
+#matchStatsModernClock {
+    color: #FFFFFF;
+    background: transparent;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+#matchStatsModernTitle {
+    color: rgba(255, 255, 255, 180);
+    background: transparent;
+}
+
+QFrame#matchStatsModernHomeBadge {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #00E5FF, stop:1 #7AF0FF);
+    border-radius: 12px;
+    border: none;
+}
+
+QFrame#matchStatsModernGuestBadge {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #D4D956, stop:1 #F0F07A);
+    border-radius: 12px;
+    border: none;
+}
+
+QFrame#matchStatsModernHomeBadge #matchStatsModernBadgeText {
+    color: #041820;
+    background: transparent;
+    font-weight: 800;
+}
+
+QFrame#matchStatsModernGuestBadge #matchStatsModernBadgeText {
+    color: #1a1800;
+    background: transparent;
+    font-weight: 800;
+}
+
+#matchStatsModernHomeScore {
+    color: #00E5FF;
+    background: transparent;
+    font-weight: 900;
+}
+
+#matchStatsModernGuestScore {
+    color: #D4D956;
+    background: transparent;
+    font-weight: 900;
+}
+
+#matchStatsModernLogo {
+    background: transparent;
+    border: none;
+}
+
+#matchStatsModernPeriodCaption {
+    color: rgba(255, 255, 255, 200);
+    background: transparent;
+    font-weight: 700;
+}
+
+#matchStatsModernPeriodValue {
+    color: #FFFFFF;
+    background: transparent;
+    font-weight: 900;
+}
+
+QTableWidget#matchStatisticsModernTableHome,
+QTableWidget#matchStatisticsModernTableGuest {
+    background-color: rgba(12, 18, 30, 170);
+    color: #F2F6FF;
+    border: 1px solid rgba(255, 255, 255, 35);
+    border-radius: 14px;
+    gridline-color: transparent;
+    outline: none;
+    alternate-background-color: rgba(12, 18, 30, 170);
+}
+
+QTableWidget#matchStatisticsModernTableHome QHeaderView::section {
+    background-color: #00B8D4;
+    color: #FFFFFF;
+    border: none;
+    border-bottom: 2px solid #7AF0FF;
+    padding: 8px 8px;
+    font-weight: 800;
+}
+
+QTableWidget#matchStatisticsModernTableGuest QHeaderView::section {
+    background-color: #C4C832;
+    color: #1A1800;
+    border: none;
+    border-bottom: 2px solid #F0F07A;
+    padding: 8px 8px;
+    font-weight: 800;
+}
+
+QTableWidget#matchStatisticsModernTableHome::item,
+QTableWidget#matchStatisticsModernTableGuest::item {
+    padding: 2px 8px;
+    border: none;
+    background-color: transparent;
+}
+
+QTableWidget#matchStatisticsModernTableHome::item:alternate,
+QTableWidget#matchStatisticsModernTableGuest::item:alternate {
+    background-color: transparent;
+}
+
+/* Tournament table modern v2 (KHL-style standings) */
+QGroupBox#tournamentTableOverlay {
+    border: none;
+    background: transparent;
+}
+
+QWidget#tournamentClassicPage,
+QWidget#tournamentModernPage {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 rgba(10, 12, 18, 245), stop:1 rgba(6, 8, 14, 250));
+    border: none;
+}
+
+#tournamentModernTitle {
+    color: #FFFFFF;
+    background: transparent;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+QFrame#tournamentModernRibbon {
+    background-color: #00E5FF;
+    border: none;
+    border-radius: 2px;
+}
+
+#tournamentModernSubtitle {
+    color: #041820;
+    background: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+#tournamentModernStatHeaderLabel {
+    color: #00E5FF;
+    background: transparent;
+    font-weight: 700;
+}
+
+QFrame#tournamentModernRow {
+    background-color: rgba(28, 32, 40, 180);
+    border: none;
+    border-radius: 4px;
+}
+
+QFrame#tournamentModernPlayoffBar {
+    background-color: #00E5FF;
+    border: none;
+    border-radius: 1px;
+}
+
+QFrame#tournamentModernOutBar {
+    background-color: #E53935;
+    border: none;
+    border-radius: 1px;
+}
+
+#tournamentModernRank {
+    color: #FFFFFF;
+    background: transparent;
+    font-weight: 800;
+}
+
+#tournamentModernLogo {
+    background: transparent;
+    border: none;
+}
+
+#tournamentModernTeamName {
+    color: #F5F7FA;
+    background: transparent;
+    font-weight: 700;
+}
+
+#tournamentModernStat {
+    color: #E8ECF2;
+    background: transparent;
+}
+
+#tournamentModernPtsBadge {
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+/* StandartDialog */
+#StandartDialog {
+    background-color: #2a2d32;
+    border-radius: 12px;
+}
+
+#StandartDialogIcon {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+#StandartDialogTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaed;
+    padding: 2px 0;
+}
+
+#StandartDialogCard {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#StandartDialogText {
+    font-size: 15px;
+    line-height: 1.45;
+    color: #d0d4da;
+}
+
+#StandartDialogNo {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background-color: #3d4249;
+    color: #e8eaed;
+    border: 1px solid #555b63;
+}
+
+#StandartDialogNo:hover {
+    background-color: #4a5058;
+}
+
+#StandartDialogYes {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid #256628;
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+#StandartDialogYes:hover {
+    background-color: #388e3c;
+}
+
+#StandartDialogSpin {
+    font-size: 22px;
+    font-weight: 700;
+    min-height: 42px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #e8eaed;
+}
+
+#StandartDialogSpin:focus {
+    border: 1px solid #2e7d32;
+}
+
+#StandartDialogInput {
+    font-size: 15px;
+    min-height: 42px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #e8eaed;
+}
+
+#StandartDialogInput:focus {
+    border: 1px solid #2e7d32;
+}
+
+#StandartDialog[dialogRole="alert"] #StandartDialogYes {
+    background-color: award_accent ;
+    border: 1px solid #4a90c8;
+    color: #ffffff;
+}
+
+#StandartDialog[dialogRole="alert"] #StandartDialogYes:hover {
+    background-color: #7ec8ff;
+}
+
+/* MissingVideoDialog */
+#MissingVideoDialog {
+    background-color: #2a2d32;
+    border-radius: 14px;
+}
+
+#MissingVideoIconWrap {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 #3d2e1a, stop:1 #4a3520);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 14px;
+}
+
+#MissingVideoTitle {
+    font-size: 19px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#MissingVideoSubtitle {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #a0a8b4;
+}
+
+#MissingVideoCard {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+#MissingVideoBadge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #fbbf24;
+    background-color: rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 999px;
+    padding: 3px 10px;
+}
+
+#MissingVideoFileName {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#MissingVideoFilePath {
+    font-size: 12px;
+    color: #8b93a0;
+    font-family: Consolas, "Courier New", monospace;
+}
+
+#MissingVideoDialog QPushButton {
+    margin: 0px;
+}
+
+#MissingVideoBtnCancel {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #a0a8b4;
+    border: 1px solid #555b63;
+}
+
+#MissingVideoBtnCancel:hover {
+    background-color: #3d4249;
+    color: #e8eaed;
+}
+
+#MissingVideoBtnRemove {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: rgba(244, 63, 94, 0.12);
+    color: #fb7185;
+    border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+#MissingVideoBtnRemove:hover {
+    background-color: rgba(244, 63, 94, 0.2);
+}
+
+#MissingVideoBtnUpdate {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: 1px solid #256628;
+}
+
+#MissingVideoBtnUpdate:hover {
+    background-color: #388e3c;
+}
+
+/* VidTablo — настройка макета */
+#VidTabloDialog {
+    background-color: #2a2d32;
+    border-radius: 12px;
+}
+
+#vidTabloHintLabel {
+    color: Text_2 ;
+    font-size: 13px;
+    padding-bottom: 2px;
+}
+
+#vidTabloScrollArea {
+    background: transparent;
+    border: none;
+}
+
+#vidTabloScrollContent {
+    background: transparent;
+}
+
+#vidTabloSectionCard {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#vidTabloSectionTitle {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: Text_2 ;
+    padding-bottom: 2px;
+}
+
+#vidTabloSwitchRow {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+}
+
+#vidTabloSwitchRow:hover {
+    background-color: rgba(100, 181, 246, 0.08);
+    border-color: rgba(100, 181, 246, 0.22);
+}
+
+#vidTabloSwitchLabel {
+    font-size: 14px;
+    color: Text_1 ;
+}
+
+/* PlayerRosterDialog */
+#PlayerRosterDialog {
+    background-color: #2d2d30;
+}
+
+#PlayerRosterTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#PlayerRosterCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#PlayerRosterCard {
+    background-color: #3e3e42;
+    border: 1px solid #4e4e52;
+    border-radius: 12px;
+}
+
+#PlayerRosterTable {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    gridline-color: #4e4e52;
+    color: #ffffff;
+}
+
+/* GoalAuthorsDialog */
+#GoalAuthorsDialog {
+    background-color: #2d2d30;
+}
+
+#GoalAuthorsTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#GoalAuthorsCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#GoalAuthorsCard {
+    background-color: #3e3e42;
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+}
+
+#GoalAuthorsStatusG,
+#GoalAuthorsStatusA1,
+#GoalAuthorsStatusA2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+#GoalAuthorsPlayerBtn {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-top: 4px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#GoalAuthorsPlayerBtn[playerPos="G"] {
+    border-top-color: #f9a825;
+}
+
+#GoalAuthorsPlayerBtn[playerPos="D"] {
+    border-top-color: #1e88e5;
+}
+
+#GoalAuthorsPlayerBtn[playerPos="F"] {
+    border-top-color: #e53935;
+}
+
+#GoalAuthorsPlayerBtn:hover {
+    border-left-color: #0078D4;
+    border-right-color: #0078D4;
+    border-bottom-color: #0078D4;
+}
+
+#GoalAuthorsScroll {
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+}
+
+/* GoalkeeperChangeDialog */
+#GoalkeeperChangeDialog {
+    background-color: #2d2d30;
+}
+
+#GoalkeeperChangeTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#GoalkeeperChangeCaption {
+    font-size: 13px;
+    color: #9ba3b5;
+}
+
+#GoalkeeperChangePlayerBtn {
+    background-color: #3e3e42;
+    border: 2px solid #4e4e52;
+    border-top: 4px solid #f9a825;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: left;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+#GoalkeeperChangePlayerBtn:hover {
+    border-left-color: #0078D4;
+    border-right-color: #0078D4;
+    border-bottom-color: #0078D4;
+}
+
+#GoalkeeperChangeEmptyBtn {
+    background-color: #4a3420;
+    border: 2px solid #f9a825;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffcc80;
+}
+
+#GoalkeeperChangeEmptyBtn:hover {
+    background-color: #5c4030;
+}
+
+#GoalkeeperChangeScroll {
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+    background-color: #2d2d30;
+}
+
+/* HelpDialog */
+#HelpDialog {
+    background-color: #2d2d30;
+}
+
+#HelpDialogTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#HelpDialogHint {
+    font-size: 13px;
+    color: #b0b0b0;
+}
+
+#HelpDialogCaption {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d0d0d0;
+}
+
+#HelpDialogCard {
+    background-color: #252526;
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+}
+
+/* Поиск в справочнике объявлений */
+#AnnouncerSearchBar {
+    background-color: #1e1e1e;
+    border: 1px solid #4e4e52;
+    border-radius: 12px;
+    min-height: 44px;
+}
+
+#AnnouncerSearchBar:hover {
+    border-color: #6b6b6b;
+}
+
+#AnnouncerSearchEdit {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    color: #f3f4f6;
+    padding: 4px 0;
+    min-height: 28px;
+}
+
+#AnnouncerSearchEdit:focus {
+    background: transparent;
+    border: none;
+}
+
+#AnnouncerSearchClear {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 4px;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+#AnnouncerSearchClear:hover {
+    background-color: #3c3c3c;
+}
+
+#AnnouncerSearchCount {
+    background-color: #1e3a5f;
+    color: #93c5fd;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    min-height: 24px;
+}
+
+/* Кнопки действий окон диктора / составов */
+#AnnouncerActionBtn {
+    background-color: #3c3c3c;
+    color: #f3f4f6;
+    border: 1px solid #5a5a5a;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    min-height: 40px;
+}
+
+#AnnouncerActionBtn:hover {
+    background-color: #4a4a4a;
+    border-color: #6b6b6b;
+}
+
+#AnnouncerActionBtn:pressed {
+    background-color: #333333;
+}
+
+#AnnouncerActionBtnPrimary {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    min-height: 40px;
+}
+
+#AnnouncerActionBtnPrimary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+#AnnouncerActionBtnPrimary:pressed {
+    background-color: #1d4ed8;
+}
+
+#AnnouncerActionBtnGhost {
+    background-color: transparent;
+    color: #93c5fd;
+    border: 1px solid #3b82f6;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    min-height: 40px;
+}
+
+#AnnouncerActionBtnGhost:hover {
+    background-color: #1e3a5f;
+    border-color: #60a5fa;
+}
+
+#AnnouncerActionBtnGhost:pressed {
+    background-color: #172554;
+}
+
+#ConfigEditorSectionList {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+#ConfigEditorTable {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    gridline-color: #4e4e52;
+    color: #ffffff;
+}
+
+#ConfigEditorValueEdit {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    padding: 8px;
+    color: #ffffff;
+}
+
+#ReleaseNotesVersionList {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+#ReleaseNotesScroll {
+    background: transparent;
+    border: none;
+}
+
+#ReleaseNotesChangesHost {
+    background: transparent;
+}
+
+#ReleaseNotesChangeItem {
+    font-size: 13px;
+    color: #e0e0e0;
+    line-height: 1.35;
+}
+
+/* SettingsDialog */
+#SettingsDialog {
+    background-color: #2a2d32;
+}
+
+#settingsDialogTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#settingsDialogHint {
+    font-size: 13px;
+    color: #9aa0a6;
+    padding-bottom: 2px;
+}
+
+#settingsTabsCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#settingsTabs {
+    background: transparent;
+    border: none;
+}
+
+#settingsTabs::pane {
+    border: none;
+    background: transparent;
+    top: -1px;
+}
+
+#settingsTabs QTabBar::tab {
+    background: transparent;
+    color: #9aa0a6;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 4px 10px;
+    margin-right: 1px;
+    min-height: 24px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#settingsTabs QTabBar::tab:selected,
+#settingsTabs QTabBar::tab:hover {
+    color: #e8eaed;
+    border-bottom: 2px solid #64b5f6;
+    background: rgba(100, 181, 246, 0.08);
+}
+
+#settingsTabPage {
+    background: transparent;
+}
+
+#settingsTabScroll {
+    background: transparent;
+    border: none;
+}
+
+#settingsTabScrollContent {
+    background: transparent;
+}
+
+/* Компактные секции — без карточек, чтобы не ломать плотную вёрстку вкладок */
+#settingsSectionGroup {
+    background: transparent;
+    border: none;
+    margin-top: 6px;
+    padding-top: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #9aa0a6;
+}
+
+#settingsSectionGroup::title {
+    subcontrol-origin: margin;
+    left: 0px;
+    top: 2px;
+    padding: 0 2px;
+    color: #9aa0a6;
+}
+
+/* PlaylistVideo */
+#PlaylistVideoDialog {
+    background-color: #2a2d32;
+}
+
+#playlistDialogTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#playlistDialogHint {
+    font-size: 13px;
+    color: #9aa0a6;
+}
+
+#playlistCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+#playlistSectionCaption {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9aa0a6;
+}
+
+#playlistCountLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64b5f6;
+    background-color: rgba(100, 181, 246, 0.12);
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+#playlistTable {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    gridline-color: transparent;
+    alternate-background-color: #32353a;
+    color: #e8eaed;
+}
+
+#playlistTable::item {
+    padding: 6px 8px;
+}
+
+#playlistTable::item:selected {
+    background-color: rgba(100, 181, 246, 0.22);
+    color: #ffffff;
+}
+
+#playlistTable QHeaderView::section {
+    background-color: #32353a;
+    color: #9aa0a6;
+    border: none;
+    border-bottom: 1px solid #4e4e52;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 12px;
+}\n
+/* PenaltyListDialog */
+#PenaltyListDialog {
+    background-color: #2a2d32;
+}
+
+#penaltyListDialogTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#penaltyListDialogHint {
+    font-size: 13px;
+    color: #9aa0a6;
+}
+
+#penaltyListCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+#penaltyListSectionCaption {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9aa0a6;
+}
+
+#penaltyListCountLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64b5f6;
+    background-color: rgba(100, 181, 246, 0.12);
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+#penaltyListFieldLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9aa0a6;
+}
+
+#penaltyListField {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    padding: 4px 10px;
+    color: #e8eaed;
+}
+
+#penaltyListWidget {
+    background-color: #2d2d30;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    alternate-background-color: #32353a;
+    color: #e8eaed;
+    outline: none;
+}
+
+#penaltyListWidget::item {
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin: 1px 2px;
+}
+
+#penaltyListWidget::item:selected {
+    background-color: rgba(100, 181, 246, 0.22);
+    color: #ffffff;
+}
+
+#penaltyListWidget::item:hover {
+    background-color: rgba(100, 181, 246, 0.1);
+}
+/* EditGameTwo / Correction */
+#EditGameTwoDialog {
+    background-color: #2a2d32;
+}
+
+#editGameDialogTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#editGameDialogHint {
+    font-size: 13px;
+    color: #9aa0a6;
+}
+
+#editGameCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+#editGameSectionCaption {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9aa0a6;
+}
+
+#editGameTeamName {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#editGameFieldLabel {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #9aa0a6;
+}
+
+#editGameValue {
+    background-color: #1e2126;
+    color: #ffffff;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+#editGameTimeField {
+    background-color: #1e2126;
+    color: #ffffff;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    padding: 4px 8px;
+    selection-background-color: #64b5f6;
+}
+
+#editGameColon {
+    color: #e8eaed;
+    font-weight: 700;
+}
+
+#editGameStepButton {
+    background-color: #3a3f47;
+    color: #e8eaed;
+    border: 1px solid #4e4e52;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#editGameStepButton:hover {
+    background-color: #454b55;
+    border-color: #64b5f6;
+}
+
+#editGameStepButton:pressed {
+    background-color: #505760;
+}
+
+#editGameStepButton:disabled {
+    color: #6b7280;
+    background-color: #32353a;
+}
+
+/* HotkeysDialog */
+#HotkeysDialog {
+    background-color: #2a2d32;
+}
+
+#HotkeysTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e8eaed;
+}
+
+#HotkeysCaption {
+    font-size: 13px;
+    color: #9aa0a6;
+}
+
+#HotkeysListCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+}
+
+#HotkeysScroll {
+    background: transparent;
+    border: none;
+}
+
+#HotkeysScrollContent {
+    background: transparent;
+}
+
+#HotkeysSectionCaption {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #9aa0a6;
+    padding: 2px 2px 4px 2px;
+}
+
+#HotkeysRow {
+    background-color: #32363c;
+    border: 1px solid #3f454d;
+    border-radius: 12px;
+}
+
+#HotkeysRow:hover {
+    background-color: #3a3f47;
+    border-color: #5a6570;
+}
+
+#HotkeysRow[selected="true"] {
+    background-color: #2f3f52;
+    border-color: #64b5f6;
+}
+
+#HotkeysRowLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8eaed;
+}
+
+#HotkeysKeyEdit {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e8eaed;
+    background-color: #1e2126;
+    border: 2px solid #4e4e52;
+    border-radius: 10px;
+    padding: 2px 10px;
+}
+
+#HotkeysKeyEdit:focus {
+    border-color: #64b5f6;
+    background-color: #1e2126;
+}
+
+#HotkeysRowClear {
+    background-color: #3a3f47;
+    color: #9aa0a6;
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 0;
+}
+
+#HotkeysRowClear:hover {
+    background-color: #4a3030;
+    color: #ef9a9a;
+    border-color: #e57373;
+}
+
+#HotkeysGhostButton {
+    background-color: #3a3f47;
+    color: #e8eaed;
+    border: 1px solid #4e4e52;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+}
+
+#HotkeysGhostButton:hover {
+    background-color: #454b55;
+    border-color: #64b5f6;
+}
+
+#HotkeysGhostButton:pressed {
+    background-color: #505760;
+}
+
+#HotkeysPrintFormDialog {
+    background-color: #2a2d32;
+}
+
+#HotkeysPrintPreview {
+    background-color: #1e2126;
+    border: none;
+    border-radius: 12px;
+    padding: 8px;
+    color: #e8eaed;
+}

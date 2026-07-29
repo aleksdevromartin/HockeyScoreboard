@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>PySide6 Web Remote</title>
+    <style>
+        :root {
+            --bg: #0b1020;
+            --panel: #0a1d2f;
+            --border: #2d6f97;
+            --fg: #e6f7ff;
+            --accent: #37b1d9;
+            --goal: #4CAF50;
+            --foul: #ff9800;
+            --card-yellow: #ffc107;
+            --card-red: #f44336;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: radial-gradient(circle at 20% -10%, rgba(60,120,180,.25), transparent 40%), var(--bg);
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--fg);
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            background: rgba(10, 29, 47, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-top: 30px;
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Стили для блоков */
+        .blocks-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .block-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .block-left {
+            width: 70%;
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.15), rgba(10, 29, 47, 0.6));
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-top: 12px;
+        }
+
+        .block-left:hover {
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.25), rgba(10, 29, 47, 0.8));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(55, 177, 217, 0.2);
+        }
+        .block-center,
+        .block-right {
+            width: 30%;
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.1), rgba(10, 29, 47, 0.5));
+            border: 1px solid rgba(45, 111, 151, 0.6);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-top: 12px;
+        }
+        .block-center{
+            width: 100%;
+        }
+        .block-right:hover {
+            background: linear-gradient(135deg, rgba(55, 177, 217, 0.15), rgba(10, 29, 47, 0.7));
+            transform: translateY(-2px);
+        }
+
+        /* Стиль для лейбла на линии блока */
+        .block-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--bg);
+            padding: 0 10px;
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(5px);
+            letter-spacing: 0.5px;
+        }
+
+        .block-content {
+            color: var(--fg);
+            font-size: 14px;
+            line-height: 1.4;
+            margin-top: 5px;
+        }
+
+        /* Стили для статуса */
+        .status {
+            padding: 12px;
+            background: rgba(232, 245, 233, 0.1);
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        /* Стили для полей ввода */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--fg);
+            font-size: 14px;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(230, 247, 255, 0.6);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .input-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background: linear-gradient(135deg, #45a049, #3d8b40);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+
+         /* Стили для трех scoreboard на одной линии */
+        .scoreboards-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .scoreboard {
+            flex: 1;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            padding: 15px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .scoreboard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(55, 177, 217, 0.3);
+        }
+
+        .scoreboard-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .team {
+            flex: 1;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        .team-name input {
+            width: 100%;
+            padding: 5px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--fg);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .score {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 8px 0;
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .score-controls {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        .vs {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .match-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 10px;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .control-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-goal { background: var(--goal); }
+        .btn-goal:hover { background: #45a049; transform: scale(1.05); }
+
+        .btn-foul { background: var(--foul); }
+        .btn-foul:hover { background: #e68900; transform: scale(1.05); }
+
+        .btn-yellow { background: var(--card-yellow); color: #333; }
+        .btn-yellow:hover { background: #e6a800; transform: scale(1.05); }
+
+        .btn-red { background: var(--card-red); }
+        .btn-red:hover { background: #d32f2f; transform: scale(1.05); }
+
+        .btn-reset { background: #607d8b; }
+        .btn-reset:hover { background: #455a64; transform: scale(1.05); }
+
+        .btn-period { background: #9c27b0; }
+        .btn-period:hover { background: #7b1fa2; transform: scale(1.05); }
+
+        .small-btn {
+            padding: 3px 6px;
+            font-size: 10px;
+            margin: 0;
+        }
+
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .block-row {
+                flex-direction: column;
+            }
+
+            .block-left, .block-right {
+                width: 100%;
+            }
+
+            .container {
+                max-width: 95%;
+                padding: 15px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👤 {{ username }} - Web Remote</h1>
+        <div class="status" id="status">Подключено к серверу</div>
+
+        <!-- 4 блока расположенных по парно в 2 строки (левые и правые блоки поменяны местами) -->
+        <div class="blocks-grid">
+            <!-- Первая строка -->
+            <div class="block-row">
+                <div class="block-left">
+                    <div class="block-label">⚙️ Управление игровым таблом</div>
+                    <div class="block-content">
+
+
+
+
+                        <div class="scoreboards-container">
+                            <!-- Поле 1 -->
+                            <div class="scoreboard" data-field="1">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА А</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="1" value="КОМАНДА 1А" maxlength="15" wfd-id="id0">
+                                        </div>
+                                        <div class="score" id="homeScore1">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(1, 'home', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(1, 'home', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="1" value="КОМАНДА 1Б" maxlength="15" wfd-id="id1">
+                                        </div>
+                                        <div class="score" id="awayScore1">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(1, 'away', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(1, 'away', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="match-info">
+                                    <div class="info-item">
+                                        <div class="info-label">🕐 ТАЙМ</div>
+                                        <div class="info-value" id="period1">1</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">⏱️ МИН</div>
+                                        <div class="info-value" id="minute1">0</div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-period small-btn" onclick="changePeriod(1, 1)">+ Тайм</button>
+                                    <button class="btn btn-reset small-btn" onclick="resetField(1)">Сброс</button>
+                                </div>
+                            </div>
+
+                            <!-- Поле 2 -->
+                            <div class="scoreboard" data-field="2">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА B</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="2" value="КОМАНДА 2А" maxlength="15" wfd-id="id2">
+                                        </div>
+                                        <div class="score" id="homeScore2">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(2, 'home', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(2, 'home', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="2" value="КОМАНДА 2Б" maxlength="15" wfd-id="id3">
+                                        </div>
+                                        <div class="score" id="awayScore2">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(2, 'away', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(2, 'away', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="match-info">
+                                    <div class="info-item">
+                                        <div class="info-label">🕐 ТАЙМ</div>
+                                        <div class="info-value" id="period2">1</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">⏱️ МИН</div>
+                                        <div class="info-value" id="minute2">0</div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-period small-btn" onclick="changePeriod(2, 1)">+ Тайм</button>
+                                    <button class="btn btn-reset small-btn" onclick="resetField(2)">Сброс</button>
+                                </div>
+                            </div>
+
+                            <!-- Поле 3 -->
+                            <div class="scoreboard" data-field="3">
+                                <div class="scoreboard-title">🏟️ ПЛОЩАДКА C</div>
+                                <div class="teams">
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-home-name" data-field="3" value="КОМАНДА 3А" maxlength="15" wfd-id="id4">
+                                        </div>
+                                        <div class="score" id="homeScore3">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(3, 'home', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(3, 'home', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                    <div class="vs">VS</div>
+                                    <div class="team">
+                                        <div class="team-name">
+                                            <input type="text" class="team-away-name" data-field="3" value="КОМАНДА 3Б" maxlength="15" wfd-id="id5">
+                                        </div>
+                                        <div class="score" id="awayScore3">0</div>
+                                        <div class="score-controls">
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(3, 'away', 1)">+1</button>
+                                            <button class="btn btn-goal small-btn" onclick="updateScore(3, 'away', -1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="match-info">
+                                    <div class="info-item">
+                                        <div class="info-label">🕐 ТАЙМ</div>
+                                        <div class="info-value" id="period3">1</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">⏱️ МИН</div>
+                                        <div class="info-value" id="minute3">0</div>
+                                    </div>
+                                </div>
+                                <div class="control-buttons">
+                                    <button class="btn btn-period small-btn" onclick="changePeriod(3, 1)">+ Тайм</button>
+                                    <button class="btn btn-reset small-btn" onclick="resetField(3)">Сброс</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="block-right">
+                    <div class="block-label">📊 Команды / Trams</div>
+                    <div class="block-content">
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева А (TeamHA)</div>
+                        <div class="input-group">
+                            <input type="text" id="HomeA" placeholder="Команда хозяев на поле А">
+                            <input type="text" id="HomeALogo" placeholder="Логотип хозяев на поле  A">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева B (TeamHB)</div>
+                        <div class="input-group">
+                            <input type="text" id="HomeB" placeholder="Команда хозяев на поле B">
+                            <input type="text" id="HomeBLogo" placeholder="Логотип хозяев на поле  B">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Хозяева C (TeamHC)</div>
+                        <div class="input-group">
+                            <input type="text" id="HomeC" placeholder="Команда хозяев на поле C">
+                            <input type="text" id="HomeCLogo" placeholder="Логотип хозяев на поле  C">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости А (TeamGA)</div>
+                        <div class="input-group">
+                            <input type="text" id="GuestA" placeholder="Команда гостей на поле  А">
+                            <input type="text" id="GuestALogo" placeholder="Логотип гостей на поле  A">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости B (TeamGB)</div>
+                        <div class="input-group">
+                            <input type="text" id="GuestB" placeholder="Команда гостей на поле  B">
+                            <input type="text" id="GuestBLogo" placeholder="Логотип гостей на поле  B">
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Гости C (TeamGC)</div>
+                        <div class="input-group">
+                            <input type="text" id="GuestC" placeholder="Команда гостей на поле  C">
+                            <input type="text" id="GuestCLogo" placeholder="Логотип гостей на поле  C">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вторая строка -->
+            <div class="block-row">
+                <div class="block-left">
+                    <div class="block-label">🔧 Команды</div>
+                    <div class="block-content">
+                        <div class="input-group">
+                            <input type="text" id="cmdInput2" placeholder="Введите команду...">
+                            <button onclick="sendCommandFromInput('cmdInput2')">Отправить</button>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">
+                            Введите любую системную команду
+                        </div>
+                    </div>
+                </div>
+                <div class="block-right">
+                    <div class="block-label">📝 Время и штрафы</div>
+                    <div class="block-content">
+                        <div style="margin-top: 10px; font-size: 12px; color: var(--accent);">Время игры (ММ:СС)</div>
+                        <div class="input-group">
+                            <input type="text" id="Timer" placeholder="Таймер">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-row">
+                <div class="block-center">
+                    <div class="block-label">📡 Статус соединения</div>
+                    <div class="block-content">
+                        <div class="stat-item">
+                            <span>🌐 WebSocket:</span>
+                            <span id="wsStatus">Подключение...</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>🖥️ HTTP API:</span>
+                            <span id="httpStatus">Проверка...</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>👤 Пользователь:</span>
+                            <span id="username">{{ username }}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>📡 Сервер:</span>
+                            <span id="serverHost">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket соединение
+        const ws = new WebSocket('ws://' + window.location.host + '/ws');
+
+        // Данные для трех полей
+        let fieldsData = {
+            1: { homeScore: 0, awayScore: 0, period: 1, minute: 0, homeName: "КОМАНДА 1А", awayName: "КОМАНДА 1Б" },
+            2: { homeScore: 0, awayScore: 0, period: 1, minute: 0, homeName: "КОМАНДА 2А", awayName: "КОМАНДА 2Б" },
+            3: { homeScore: 0, awayScore: 0, period: 1, minute: 0, homeName: "КОМАНДА 3А", awayName: "КОМАНДА 3Б" }
+        };
+
+        let currentField = 1;
+        let autoSyncInterval = null;
+        let lastSyncTime = null;
+
+        // ============== WebSocket обработчики ==============
+        ws.onmessage = function(event) {
+            try {
+                const data = JSON.parse(event.data);
+                handleServerMessage(data);
+            } catch {
+                addSystemEvent('📨 Получено: ' + event.data);
+            }
+        };
+
+        ws.onopen = function() {
+            document.getElementById('statusText').innerHTML = '✅ Подключено к WebSocket';
+            document.getElementById('connectionIcon').innerHTML = '✅';
+            document.getElementById('wsStatus').innerHTML = '✅ Connected';
+            addSystemEvent('WebSocket соединение установлено');
+            syncFromServer(); // Получаем данные при подключении
+        };
+
+        ws.onclose = function() {
+            document.getElementById('statusText').innerHTML = '❌ WebSocket отключен';
+            document.getElementById('connectionIcon').innerHTML = '❌';
+            document.getElementById('wsStatus').innerHTML = '❌ Disconnected';
+            addSystemEvent('Соединение разорвано');
+        };
+
+        ws.onerror = function(error) {
+            document.getElementById('wsStatus').innerHTML = '⚠️ Error';
+            addSystemEvent('Ошибка WebSocket: ' + error);
+        };
+        // ============== HTTP запросы к серверу ==============
+
+        // Получение данных с сервера
+        async function syncFromServer() {
+            try {
+                addSystemEvent('📥 Запрос данных с сервера...');
+                const response = await fetch('/api/scoreboard');
+
+                if (response.ok) {
+                    const serverData = await response.json();
+                    updateFieldsFromServerData(serverData);
+                    updateServerTimer(serverData.Timer);
+                    addSystemEvent('✅ Данные получены с сервера');
+                    updateSyncTime();
+                    return serverData;
+                } else {
+                    addSystemEvent('❌ Ошибка получения данных: ' + response.status);
+                    return null;
+                }
+            } catch (error) {
+                addSystemEvent('❌ Ошибка соединения: ' + error.message);
+                document.getElementById('httpStatus').innerHTML = '❌ Ошибка';
+                return null;
+            }
+        }
+
+        // Обновление полей из данных сервера
+        function updateFieldsFromServerData(serverData) {
+            // Поле 1
+            if (serverData.TeamHA) fieldsData[1].homeName = serverData.TeamHA;
+            if (serverData.TeamGA) fieldsData[1].awayName = serverData.TeamGA;
+            if (serverData.ScoreHA !== undefined) fieldsData[1].homeScore = serverData.ScoreHA;
+            if (serverData.ScoreGA !== undefined) fieldsData[1].awayScore = serverData.ScoreGA;
+
+            // Поле 2
+            if (serverData.TeamHB) fieldsData[2].homeName = serverData.TeamHB;
+            if (serverData.TeamGB) fieldsData[2].awayName = serverData.TeamGB;
+            if (serverData.ScoreHB !== undefined) fieldsData[2].homeScore = serverData.ScoreHB;
+            if (serverData.ScoreGB !== undefined) fieldsData[2].awayScore = serverData.ScoreGB;
+
+            // Поле 3
+            if (serverData.TeamHC) fieldsData[3].homeName = serverData.TeamHC;
+            if (serverData.TeamGC) fieldsData[3].awayName = serverData.TeamGC;
+            if (serverData.ScoreHC !== undefined) fieldsData[3].homeScore = serverData.ScoreHC;
+            if (serverData.ScoreGC !== undefined) fieldsData[3].awayScore = serverData.ScoreGC;
+
+            // Обновление DOM
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`homeScore${i}`).innerText = fieldsData[i].homeScore;
+                document.getElementById(`awayScore${i}`).innerText = fieldsData[i].awayScore;
+
+                const homeInput = document.querySelector(`.team-home-name[data-field="${i}"]`);
+                const awayInput = document.querySelector(`.team-away-name[data-field="${i}"]`);
+                if (homeInput) homeInput.value = fieldsData[i].homeName;
+                if (awayInput) awayInput.value = fieldsData[i].awayName;
+            }
+
+            // updateGlobalStats();
+            document.getElementById('httpStatus').innerHTML = '✅ OK';
+        }
+
+        async function init() {
+            await syncFromServer();
+            // Проверка HTTP API
+            try {
+                const response = await fetch('/api/scoreboard');
+                document.getElementById('httpStatus').innerHTML = response.ok ? '✅ OK' : '⚠️ Error';
+            } catch {
+                document.getElementById('httpStatus').innerHTML = '❌ Недоступен';
+            }
+        }
+
+        init();
+
+    </script>
+
+</body>
+</html>

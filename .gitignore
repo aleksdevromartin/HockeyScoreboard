@@ -1,0 +1,19 @@
+# Служебные
+.idea/
+__pycache__/
+*.pyc
+
+# Не публикуем медиа и локальные настройки
+resource/audio/
+resource/video/
+resource/config.ini
+resource/players
+resource/json/audio.json
+resource/json/headers.json
+resource/json/structure.json
+resource/json/teams.json
+resource/json/tournament_table.json
+resource/json/videos.json
+*.login
+state.json
+log/

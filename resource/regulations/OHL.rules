@@ -1,0 +1,124 @@
+Офицерская хоккейная лига #Название регламента
+
+[SYSTEM]
+language = ru_RU #Язык интерфейса: ru_RU, en_EN, de_DE
+thema = light #Тема оформления: light, dark
+sport = hockey #Вид спорта
+timer = DOWN #Направление таймера: UP / DOWN
+timeout = 30 #Время TIMEOUT в секундах
+timer_break = 120 #Время перерыва в секундах
+timer_breaktwo = 60 #Время второго перерыва в секундах
+timer_break_o = 120 #Время перерыва перед овертаймом в секундах
+break_autostart = 1 #Автозапуск таймера перерыва да / нет (1/0)
+timer_duration = 900 #Время периода в секундах
+timer_duration_o = 300 #Время овертайма в секундах
+timer_pure = 0 #Чистое время да / нет (1/0)
+last_minute_split = 1 #Десятые доли секунд на последней минуте да / нет (1/0)
+gimn_video = 1 #Видео гимн да / нет (1/0)
+goal_simplified = 1 #Упрощённый ввод гола да / нет (1/0)
+teams = resource/teams.json #Путь к файлу команд
+rosters = resource/rosters #Каталог составов команд
+players = resource/players #Каталог импорта/экспорта составов
+penalty = resource/penalties.json #Путь к файлу видов удалений
+videos = resource/videos.json #Путь к плейлисту видео
+display = 1 #Номер монитора для табло
+sounddevice = 0 #Номер звукового устройства
+null_teams = {"liga":[{"name": "По умолчанию","teams": [{"name": "HOME","logo" : "resource/img/icon/DefHome.png","location": "Ярославль"},{"name": "GUEST","logo": "resource/img/icon/DefGuest.png","location": "Ярославль"}]}]} #Команды по умолчанию (JSON)
+penalty_simplified = 0 #Упрощённый ввод удаления да / нет (1/0)
+count_period = 3 #Количество периодов
+overtime = 0 #Дополнительное время да / нет (1/0)
+shootout = 0 #Серия бросков после основного времени да / нет (1/0)
+footer_line = 0 #Отображать нижнюю строку да / нет (1/0)
+pure2mingoal = 3 #Разница в шайбах для чистого времени на последних 2 минутах
+timer_pure2min = 1 #Чистое время на последних 2 минутах да / нет (1/0)
+timer_change = 100 #Время до смены составов в секундах
+id_camera = None #ID USB-камеры
+aspect_camera = crop #Режим камеры: stretch, crop, letterbox
+def_penalty = 29 #ID удаления по умолчанию
+serial_port = None #COM-порт внешнего табло
+left_menu_show = 1 #Показывать левое меню да / нет (1/0)
+protocol = 0 #Ведение протокола матча да / нет (1/0)
+award_teams = 3 #Количество мест на церемонии награждения (3-8)
+award_show_podium = 0 #3D-пьедестал на табло да / нет (1/0)
+debug = 0 #Режим отладки да / нет (1/0)
+
+[VID]
+status_tablo = standart #Вид табло: standart, mini, line
+team_name = DOWN #Расположение названия команды: UP / DOWN
+screenname = DOWN #Расположение названия экрана: UP / DOWN
+statperiod = 0 #Статистика по периодам да / нет (1/0)
+systemhide = True #Скрыть системное время
+systemshow = False #Показать системное время
+systemtime = False #Отображать системное время
+system_date = False #Отображать системную дату
+screenhide = False #Скрыть экран
+tournament = False #Отображать турнир
+tournament_time = True #Отображать время на турнире
+rivals = False #Отображать соперников
+stausbar = False #Отображать строку статуса
+penalty_timeout = 1 #Отображать таймаут на табло да / нет (1/0)
+vgame = 2 #Количество команд: 2, 4, 6
+vinfoper = 0 #Информация о периоде
+showshots = 0 #Отображать броски да / нет (1/0)
+location = 0 #Отображать локацию команды да / нет (1/0)
+4teamlinefont = 0 #Стиль шрифта для 4 команд да / нет (1/0)
+timer_change = 0 #Отображать таймер смены да / нет (1/0)
+
+[TEXT]
+home = Home #Название команды хозяев
+guest = Guest #Название команды гостей
+homeb = Home #Название команды хозяев B
+guestb = Guest #Название команды гостей B
+homec = Home #Название команды хозяев C
+guestc = Guest #Название команды гостей C
+shots = Броски #Метка «Броски»
+scorm = Счет #Метка «Счёт»
+period = Период #Метка «Период»
+penalty = Удаление #Метка «Удаление»
+bullet = Штрафной бросок #Метка «Штрафной бросок»
+change_goalkeeper = Смена вратаря #Метка «Смена вратаря»
+overtimelable = OT #Метка овертайма
+shoot_out = Серия бросков #Метка серии бросков
+venue = Площадка #Метка «Площадка»
+name_venue_1 = A #Название площадки A
+name_venue_2 = B #Название площадки B
+name_venue_3 = C #Название площадки C
+header = Офицерская хоккейная лига #Верхний колонтитул / заголовок 1
+footer = None #Нижний колонтитул / заголовок 2
+style_liga = Banana Brick #Шрифт лиги
+style_teams = Bahnschrift #Шрифт команд
+style_timer = Seven Segment #Шрифт таймера
+style_scorm = Seven Segment #Шрифт счёта
+style_shots = Seven Segment #Шрифт бросков
+style_period = Anton #Шрифт периода
+style_penalty = Seven Segment #Шрифт удалений
+style_goalkeeper = Bahnschrift #Шрифт вратаря
+style_bullet = Seven Segment #Шрифт буллитов
+color_teams = ffffff #Цвет названий команд (HEX без #)
+color_tournament = ffffff #Цвет турнира (HEX без #)
+color_infoperiod = ffffff #Цвет информации периода (HEX без #)
+color_timeout = 000080 #Цвет таймаута (HEX без #)
+color_timer = ffffff #Цвет таймера (HEX без #)
+color_scorm = ffffff #Цвет счёта (HEX без #)
+color_shots = ffffff #Цвет бросков (HEX без #)
+color_penalty = ffffff #Цвет удалений (HEX без #)
+
+[PROTOCOL]
+tournament =  #Название турнира в протоколе
+place =  #Место проведения
+referee1 =  #Судья 1
+referee2 =  #Судья 2
+timekeeper =  #Секундометрист
+secretary =  #Секретарь
+logo =  #Логотип в протоколе
+layout = horizontal #Ориентация протокола: horizontal / vertical
+
+[HOCKEY]
+timer_duration = 900 #Длительность периода в секундах
+count_period = 3 #Количество периодов
+overtime = 0 #Овертайм да / нет (1/0)
+shootout = 0 #Серия бросков да / нет (1/0)
+timeout_count = 1 #Количество таймаутов
+timeout_duration = 30 #Длительность таймаута в секундах
+timeout_per_period = 0 #Таймауты на период да / нет (1/0)
+penalty_shot_pause = 0 #Пауза штрафного броска да / нет (1/0)

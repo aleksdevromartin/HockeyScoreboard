@@ -1,0 +1,47 @@
+{
+  "format_version": 1,
+  "sport": "hockey",
+  "team": {
+    "name": "Авангард",
+    "abbreviation": "АВАН",
+    "photos": "resource/img/players/avangard"
+  },
+  "players": [
+    {
+      "number": 1,
+      "last_name": "Петров",
+      "first_name": "Алексей",
+      "position": "G",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 5,
+      "last_name": "Сидоров",
+      "first_name": "Иван",
+      "position": "D",
+      "role": "A",
+      "photo": null
+    },
+    {
+      "number": 10,
+      "last_name": "Иванов",
+      "first_name": "Сергей",
+      "position": "F",
+      "role": "K",
+      "photo": null
+    },
+    {
+      "number": 17,
+      "last_name": "Козлов",
+      "first_name": "Дмитрий",
+      "position": "F",
+      "role": "",
+      "photo": null
+    }
+  ],
+  "meta": {
+    "updated": "2026-07-24T10:56:21Z",
+    "exported_by": "HockeyScoreboard 1.6"
+  }
+}

@@ -1,0 +1,560 @@
+{
+  "version": 1,
+  "language": "de_DE",
+  "sections": [
+    {
+      "id": "before",
+      "title": "Vor dem Spiel",
+      "items": [
+        {
+          "id": "welcome",
+          "title": "Welcome and match intro",
+          "text": "Good afternoon (evening), ladies and gentlemen! Today at … (arena), as part of … (tournament), the game will be played between … (home) and … (visitors)."
+        },
+        {
+          "id": "rosters",
+          "title": "Team rosters",
+          "text": "We present the line-ups of today’s teams.\\n\\nLine-up of … (visitors).\\nGoalkeepers:\\nNumber, first name, last name\\nSkaters:\\nNumber, first name, last name (team captain)\\nHead coach: first name, last name\\n\\nLine-up of … (home).\\nGoalkeepers:\\nNumber, first name, last name\\nSkaters:\\nNumber, first name, last name (team captain)\\nHead coach: first name, last name."
+        },
+        {
+          "id": "open_anthem",
+          "title": "Opening and national anthem",
+          "text": "The game between … (home) and … (visitors) is declared open! Please rise for the national anthem."
+        },
+        {
+          "id": "referees",
+          "title": "Officials",
+          "text": "The officials for today’s game: referees …, linesmen …"
+        },
+        {
+          "id": "goalkeepers",
+          "title": "Starting goalkeepers",
+          "text": "In goal for … (visitors): … (name, number); for … (home): … (name, number)."
+        },
+        {
+          "id": "safety",
+          "title": "Safety announcement",
+          "text": "Dear spectators! Please treat the participants and other fans with respect. Keep order in the stands. Report any unattended items to security. Smoking and alcohol are prohibited. Thank you."
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "title": "Tore",
+      "items": [
+        {
+          "id": "goal_no_assist",
+          "title": "Goal — no assists",
+          "text": "Goal scored by … (name, number)."
+        },
+        {
+          "id": "goal_one_assist",
+          "title": "Goal — one assist",
+          "text": "Assisted by … (name, number), goal scored by … (name, number)."
+        },
+        {
+          "id": "goal_two_assists",
+          "title": "Goal — two assists",
+          "text": "Assisted by … (name, number) and … (name, number), goal scored by … (name, number)."
+        },
+        {
+          "id": "goal_disallow_time",
+          "title": "No goal — after stoppage",
+          "text": "No goal has been scored because the puck was scored after the stoppage of play."
+        },
+        {
+          "id": "goal_disallow_period",
+          "title": "No goal — after period",
+          "text": "No goal has been scored because the puck crossed the goal line after the end of the period."
+        },
+        {
+          "id": "goal_disallow_line",
+          "title": "No goal — did not cross line",
+          "text": "No goal has been scored because the puck did not completely cross the goal line."
+        },
+        {
+          "id": "goal_disallow_dislodged",
+          "title": "No goal — dislodged net",
+          "text": "No goal has been scored because the puck was scored into a dislodged net."
+        },
+        {
+          "id": "goal_disallow_kick",
+          "title": "No goal — kicked/directed",
+          "text": "No goal has been scored because the puck was directed into the net by a kick (hand, head or body)."
+        },
+        {
+          "id": "goal_disallow_highstick",
+          "title": "No goal — high stick",
+          "text": "No goal has been scored because the puck was directed into the net with a high stick."
+        },
+        {
+          "id": "goal_disallow_interfere",
+          "title": "No goal — goaltender interference",
+          "text": "No goal has been scored due to goaltender interference."
+        },
+        {
+          "id": "goal_disallow_block",
+          "title": "No goal — crease violation",
+          "text": "No goal has been scored due to goaltender interference / crease violation."
+        },
+        {
+          "id": "goal_disallow_rebound_ps",
+          "title": "No goal — rebound on penalty shot",
+          "text": "No goal has been scored because the puck was scored on a rebound (penalty shot or shootout)."
+        },
+        {
+          "id": "goal_correct_scorer",
+          "title": "Correction — goal scorer",
+          "text": "Attention! Correction: goal number … into the net of …, assisted by … and …, scored by … (name, number)."
+        },
+        {
+          "id": "goal_correct_assists",
+          "title": "Correction — assists",
+          "text": "Goal number … into the net of … scored by … (name, number), assisted by … and …"
+        }
+      ]
+    },
+    {
+      "id": "during",
+      "title": "Während des Spiels",
+      "items": [
+        {
+          "id": "last_min_1",
+          "title": "One minute left — 1st period",
+          "text": "One minute left in the first period."
+        },
+        {
+          "id": "last_min_2",
+          "title": "One minute left — 2nd period",
+          "text": "One minute left in the second period."
+        },
+        {
+          "id": "last_min_3",
+          "title": "Two minutes left — 3rd period",
+          "text": "Two minutes left in the third period."
+        },
+        {
+          "id": "full_strength_one",
+          "title": "Team at full strength",
+          "text": "Team … is playing at full strength."
+        },
+        {
+          "id": "full_strength_both",
+          "title": "Both teams at full strength",
+          "text": "Both teams are playing at full strength."
+        },
+        {
+          "id": "gk_change",
+          "title": "Goalkeeper change",
+          "text": "Goalkeeper change for team …. In goal: … (name, number), time …"
+        },
+        {
+          "id": "gk_premature",
+          "title": "Premature goalkeeper change",
+          "text": "Play has been stopped due to a premature goalkeeper change."
+        },
+        {
+          "id": "timeout",
+          "title": "Timeout",
+          "text": "Time out for team …"
+        },
+        {
+          "id": "attendance",
+          "title": "Attendance",
+          "text": "Attendance for today’s game between … is … spectators! Thank you for your support!"
+        },
+        {
+          "id": "score_p1",
+          "title": "Score after 1st period",
+          "text": "Score after the first period …, … leads."
+        },
+        {
+          "id": "score_p2",
+          "title": "Score after 2nd period",
+          "text": "Score after the second period …, … leads."
+        },
+        {
+          "id": "penalty_shot",
+          "title": "Penalty shot",
+          "text": "A penalty shot is awarded against team … for …. The penalty shot will be taken by … (name, number)."
+        },
+        {
+          "id": "shootout_intro",
+          "title": "Game-winning shots",
+          "text": "According to the tournament regulations, if the game is tied after regulation (and overtime), a shootout will determine the winner. Team … will shoot first."
+        },
+        {
+          "id": "clock_manual",
+          "title": "Clock by stopwatch",
+          "text": "Game time is being kept by the official stopwatch."
+        },
+        {
+          "id": "penalty_time_manual",
+          "title": "Penalty time by stopwatch",
+          "text": "Penalty time is being kept by the official stopwatch. Time remaining for penalized player … of team …: … minutes and … seconds."
+        },
+        {
+          "id": "clock_ok",
+          "title": "Scoreboard time correct",
+          "text": "The scoreboard time is correct."
+        },
+        {
+          "id": "ice_problem",
+          "title": "Ice surface problem",
+          "text": "Ladies and gentlemen, before the game can continue the ice surface must be prepared again. Player and official safety is our top priority. Thank you for your understanding!"
+        },
+        {
+          "id": "ice_resume",
+          "title": "Ice ready — resume",
+          "text": "Ladies and gentlemen, the game will resume in … minutes. Thank you for your understanding!"
+        },
+        {
+          "id": "video_challenge",
+          "title": "Coach’s challenge",
+          "text": "Team … has requested a coach’s challenge regarding the validity of the goal."
+        },
+        {
+          "id": "video_no_goal",
+          "title": "Video review — no goal",
+          "text": "After video review it is determined that …. No goal has been scored."
+        },
+        {
+          "id": "video_goal",
+          "title": "Video review — goal",
+          "text": "After video review it is determined that …. The goal is awarded."
+        },
+        {
+          "id": "video_goal_delay",
+          "title": "Video review — goal + delay",
+          "text": "After video review there is no goaltender interference. The goal is awarded. Team … is assessed a bench minor penalty for delay of game."
+        }
+      ]
+    },
+    {
+      "id": "penalties",
+      "title": "Strafzeiten",
+      "items": [
+        {
+          "id": "minor_player",
+          "title": "Minor penalty (player)",
+          "text": "A minor penalty for … has been assessed to … (name, number), team …"
+        },
+        {
+          "id": "minor_goalie",
+          "title": "Minor penalty (goalkeeper)",
+          "text": "A minor penalty for … has been assessed to the goalkeeper of team … (name, number). The penalty is served by … (name, number)."
+        },
+        {
+          "id": "coincidental",
+          "title": "Coincidental penalties",
+          "text": "A minor penalty for … has been assessed to … (name, number), team … (visitors).\\nA minor penalty for … has been assessed to … (name, number), team … (home)."
+        },
+        {
+          "id": "double_minor",
+          "title": "Two minors to one player",
+          "text": "A minor penalty for … has been assessed to … (name, number), team …. He is also assessed a minor penalty for …"
+        },
+        {
+          "id": "bench_minor",
+          "title": "Bench minor",
+          "text": "Team … is assessed a bench minor penalty for …. The penalty is served by … (name, number)."
+        },
+        {
+          "id": "major_gm",
+          "title": "Major + game misconduct",
+          "text": "A major penalty and a game misconduct for … have been assessed to … (name, number), team …"
+        },
+        {
+          "id": "misconduct",
+          "title": "Misconduct (10 min)",
+          "text": "A misconduct penalty for … has been assessed to … (name, number), team …"
+        },
+        {
+          "id": "game_misconduct",
+          "title": "Game misconduct",
+          "text": "A game misconduct for … has been assessed to … (name, number), team …"
+        },
+        {
+          "id": "too_many",
+          "title": "Too many men",
+          "text": "Team … is assessed a bench minor penalty for too many men on the ice."
+        },
+        {
+          "id": "delay_game",
+          "title": "Delay of game (bench)",
+          "text": "Team … is assessed a bench minor penalty for delay of game."
+        }
+      ],
+      "table": [
+        {
+          "reason": "Checking to the head or neck",
+          "rule": "48",
+          "templates": [
+            "A minor penalty for checking to the head or neck has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for checking to the head or neck have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Interference",
+          "rule": "56",
+          "templates": [
+            "A minor penalty for interference has been assessed to (name, number), team (team name).",
+            "A bench minor penalty for interference has been assessed to team (team name). The penalty is served by (name, number).",
+            "A major penalty for interference has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for interference have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Goaltender interference",
+          "rule": "69",
+          "templates": [
+            "A minor penalty for goaltender interference has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for goaltender interference have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Roughing",
+          "rule": "51",
+          "templates": [
+            "A minor penalty for roughing has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for roughing have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Delaying the game — puck over glass",
+          "rule": "63",
+          "templates": [
+            "A minor penalty for delaying the game (puck over the glass) has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Holding the stick",
+          "rule": "54",
+          "templates": [
+            "A minor penalty for holding the stick has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Holding",
+          "rule": "54",
+          "templates": [
+            "A minor penalty for holding has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Hooking",
+          "rule": "55",
+          "templates": [
+            "A minor penalty for hooking has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "High-sticking",
+          "rule": "60",
+          "templates": [
+            "A minor penalty for high-sticking has been assessed to (name, number), team (team name).",
+            "A double-minor penalty for high-sticking has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for high-sticking have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Spearing",
+          "rule": "62",
+          "templates": [
+            "A double-minor penalty for attempting to spear has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for spearing have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Too many men on the ice",
+          "rule": "74",
+          "templates": [
+            "Team (team name) is assessed a bench minor penalty for too many men on the ice."
+          ]
+        },
+        {
+          "reason": "Abuse of officials",
+          "rule": "39",
+          "templates": [
+            "A minor penalty for abuse of officials has been assessed to (name, number), team (team name).",
+            "A misconduct penalty for abuse of officials has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Unsportsmanlike conduct",
+          "rule": "75",
+          "templates": [
+            "A minor penalty for unsportsmanlike conduct has been assessed to (name, number), team (team name).",
+            "A game misconduct for unsportsmanlike conduct has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Charging",
+          "rule": "42",
+          "templates": [
+            "A minor penalty for charging has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for charging have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Clipping",
+          "rule": "44",
+          "templates": [
+            "A minor penalty for clipping has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for clipping have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Tripping",
+          "rule": "57",
+          "templates": [
+            "A minor penalty for tripping has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for tripping have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Cross-checking",
+          "rule": "59",
+          "templates": [
+            "A minor penalty for cross-checking has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for cross-checking have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Boarding",
+          "rule": "41",
+          "templates": [
+            "A minor penalty for boarding has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for boarding have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Slashing",
+          "rule": "61",
+          "templates": [
+            "A minor penalty for slashing has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for slashing have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Butt-ending",
+          "rule": "58",
+          "templates": [
+            "A double-minor penalty for attempting to butt-end has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for butt-ending have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Elbowing",
+          "rule": "45",
+          "templates": [
+            "A minor penalty for elbowing has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for elbowing have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Throwing equipment / stick",
+          "rule": "53",
+          "templates": [
+            "A minor penalty for throwing the stick has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Fighting",
+          "rule": "46",
+          "templates": [
+            "A major penalty and a game misconduct for fighting have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Delay of game",
+          "rule": "63",
+          "templates": [
+            "Team (team name) is assessed a bench minor penalty for delay of game."
+          ]
+        },
+        {
+          "reason": "Closing hand on the puck",
+          "rule": "67",
+          "templates": [
+            "A minor penalty for closing the hand on the puck has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Broken stick",
+          "rule": "10",
+          "templates": [
+            "A minor penalty for playing with a broken stick has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Illegal equipment",
+          "rule": "12",
+          "templates": [
+            "A minor penalty for illegal equipment has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Leaving the players’ bench",
+          "rule": "70",
+          "templates": [
+            "A minor penalty for leaving the players’ bench has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Diving / embellishment",
+          "rule": "64",
+          "templates": [
+            "A minor penalty for diving / embellishment has been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Head-butting",
+          "rule": "47",
+          "templates": [
+            "A double-minor penalty for attempting to head-butt has been assessed to (name, number), team (team name).",
+            "A major penalty and a game misconduct for head-butting have been assessed to (name, number), team (team name)."
+          ]
+        },
+        {
+          "reason": "Kicking",
+          "rule": "49",
+          "templates": [
+            "A major penalty and a game misconduct for kicking have been assessed to (name, number), team (team name)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "after",
+      "title": "Nach dem Spiel",
+      "items": [
+        {
+          "id": "final_win",
+          "title": "Final score — win",
+          "text": "Ladies and gentlemen, the game is over! … wins by the score of …"
+        },
+        {
+          "id": "final_draw",
+          "title": "Final score — tie",
+          "text": "Ladies and gentlemen, the game ends in a tie, …"
+        },
+        {
+          "id": "final_shootout",
+          "title": "Win in shootout",
+          "text": "Ladies and gentlemen, the game is over! … wins in the shootout by the score of …"
+        },
+        {
+          "id": "best_players",
+          "title": "Three stars / best players",
+          "text": "Ladies and gentlemen! The best players of the game will be awarded prizes provided by …\\nBest player for … (losing team): number, name.\\nBest player for … (winning team): number, name."
+        },
+        {
+          "id": "thanks",
+          "title": "Thank the fans",
+          "text": "Ladies and gentlemen, thank you for your support! See you next time!"
+        }
+      ]
+    }
+  ]
+}

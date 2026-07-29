@@ -1,0 +1,19 @@
+{
+    "WebAdminTitle": "Управление таблом",
+    "WebPlatformA": "Площадка A",
+    "WebTimerStart": "Старт",
+    "WebTimerStop": "Стоп",
+    "WebTimerReset": "Сброс",
+    "WebTimerNudgeMinus10": "-10с",
+    "WebTimerNudgePlus10": "+10с",
+    "WebTimerPresets": "Пресеты",
+    "WebTimerPeriod": "Период",
+    "WebTimerPeriodPlus": "+ Период",
+    "WebTimerPeriodMinus": "- Период",
+    "WebTimerPeriodValue": "1",
+    "WebHomeTeam": "Хозяева",
+    "WebGuestTeam": "Гости",
+    "WebPeriod": "Период",
+    "WebPublicInactive": "Площадка неактивна",
+    "WebClickForSound": "Нажмите для запуска табло"
+  }
