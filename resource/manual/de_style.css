@@ -3641,3 +3641,21 @@ span.de_F0381291BD
 	margin: 0;
 	*display: inline;
 }
+.list-counter-168 > div > * {
+	text-indent: 0px;}
+.list-counter-168 > div > div[class='list-marker']:before {
+	display: inline-block;
+	text-align: left;
+	padding: 0;
+	margin: 0;
+	content: '' counter(list-counter-168, disc) '\00a0';
+	counter-increment: list-counter-168;
+}
+.list-counter-168 > div > div[class='list-marker-chm'] {
+	display: inline-block;
+	text-align: left;
+	zoom: 1;
+	padding: 0;
+	margin: 0;
+	*display: inline;
+}

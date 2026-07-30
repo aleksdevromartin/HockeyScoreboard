@@ -2,190 +2,206 @@
   "format_version": 1,
   "sport": "hockey",
   "team": {
-    "name": "Балтика",
-    "abbreviation": "БАЛТИКА",
-    "photos": "resource/img/players/smokehome"
+    "name": "Локомотив 04",
+    "abbreviation": "ЛОКОМОТИ",
+    "photos": "resource/img/players/lokomotiv_2004_2012g"
   },
   "players": [
     {
-      "number": 72,
-      "last_name": "Бобровский",
-      "first_name": "Сергей",
-      "position": "G",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 88,
-      "last_name": "Василевский",
-      "first_name": "Андрей",
-      "position": "G",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 9,
-      "last_name": "Орлов",
-      "first_name": "Дмитрий",
-      "position": "D",
-      "role": "A",
-      "photo": null
-    },
-    {
-      "number": 16,
-      "last_name": "Задоров",
-      "first_name": "Никита",
-      "position": "D",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 98,
-      "last_name": "Сергачев",
-      "first_name": "Михаил",
-      "position": "D",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 44,
-      "last_name": "Гавриков",
-      "first_name": "Владислав",
-      "position": "D",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 22,
-      "last_name": "Проворов",
-      "first_name": "Иван",
-      "position": "D",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 52,
-      "last_name": "Марченко",
-      "first_name": "Кирилл",
-      "position": "D",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 27,
-      "last_name": "Миронов",
-      "first_name": "Андрей",
-      "position": "D",
+      "number": 7,
+      "last_name": "Васильев",
+      "first_name": "Артём",
+      "position": "F",
       "role": "",
       "photo": null
     },
     {
       "number": 8,
-      "last_name": "Овечкин",
-      "first_name": "Александр",
+      "last_name": "Солнцев",
+      "first_name": "Всеволод",
       "position": "F",
-      "role": "K",
+      "role": "",
       "photo": null
     },
     {
-      "number": 86,
-      "last_name": "Кучеров",
-      "first_name": "Никита",
-      "position": "F",
-      "role": "A",
+      "number": 9,
+      "last_name": "Бутенко",
+      "first_name": "Илья",
+      "position": "D",
+      "role": "",
       "photo": null
     },
     {
       "number": 10,
-      "last_name": "Панарин",
-      "first_name": "Артемий",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 97,
-      "last_name": "Капризов",
-      "first_name": "Кирилл",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 71,
-      "last_name": "Малкин",
-      "first_name": "Евгений",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 91,
-      "last_name": "Тарасенко",
-      "first_name": "Владимир",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 37,
-      "last_name": "Свечников",
-      "first_name": "Андрей",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 89,
-      "last_name": "Бучневич",
-      "first_name": "Павел",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 13,
-      "last_name": "Дацюк",
-      "first_name": "Павел",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 49,
-      "last_name": "Барбашев",
-      "first_name": "Иван",
-      "position": "F",
-      "role": "",
-      "photo": null
-    },
-    {
-      "number": 74,
-      "last_name": "Ничушкин",
-      "first_name": "Валерий",
+      "last_name": "Бобков",
+      "first_name": "Егор",
       "position": "F",
       "role": "",
       "photo": null
     },
     {
       "number": 17,
-      "last_name": "Ковальчук",
+      "last_name": "Дмитриев",
+      "first_name": "Юрий",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 19,
+      "last_name": "Афанасьев",
+      "first_name": "Иван",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 20,
+      "last_name": "Ермолов",
+      "first_name": "Елисей",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 21,
+      "last_name": "Сергеев",
       "first_name": "Илья",
       "position": "F",
       "role": "",
       "photo": null
     },
     {
-      "number": 92,
-      "last_name": "Кузнецов",
-      "first_name": "Евгений",
+      "number": 22,
+      "last_name": "Коквин",
+      "first_name": "Григорий",
+      "position": "D",
+      "role": "A",
+      "photo": null
+    },
+    {
+      "number": 24,
+      "last_name": "Козин",
+      "first_name": "Иван",
       "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 26,
+      "last_name": "Игнатов",
+      "first_name": "Иван",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 27,
+      "last_name": "Борисов",
+      "first_name": "Денис",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 29,
+      "last_name": "Ковальчук",
+      "first_name": "Ростислав",
+      "position": "F",
+      "role": "A",
+      "photo": null
+    },
+    {
+      "number": 40,
+      "last_name": "Римский",
+      "first_name": "Фёдор",
+      "position": "G",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 56,
+      "last_name": "Воронов",
+      "first_name": "Андрей",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 55,
+      "last_name": "Колесников",
+      "first_name": "Николай",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 57,
+      "last_name": "БуйлОв",
+      "first_name": "Александр",
+      "position": "F",
+      "role": "K",
+      "photo": null
+    },
+    {
+      "number": 72,
+      "last_name": "Беляев",
+      "first_name": "Матвей",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 77,
+      "last_name": "Пискунов",
+      "first_name": "Артём",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 79,
+      "last_name": "Джураев",
+      "first_name": "Рауль",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 81,
+      "last_name": "Сагайдачный",
+      "first_name": "Матвей",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 88,
+      "last_name": "Симонцев",
+      "first_name": "Кирилл",
+      "position": "D",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 97,
+      "last_name": "Михайленко",
+      "first_name": "Владислав",
+      "position": "F",
+      "role": "",
+      "photo": null
+    },
+    {
+      "number": 98,
+      "last_name": "Коровашков",
+      "first_name": "Артём",
+      "position": "G",
       "role": "",
       "photo": null
     }
   ],
   "meta": {
-    "updated": "2026-07-24T11:10:28Z",
+    "updated": "2026-07-30T11:56:04Z",
     "exported_by": "HockeyScoreboard 1.6"
   }
 }
