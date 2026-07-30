@@ -3,7 +3,7 @@
 Настольное приложение для управления спортивным табло во время матчей и трансляций. Программа объединяет пульт оператора, вывод счёта на экран, работу с командами, таймером, медиа и удалённым управлением через браузер.
 
 **Версия:** 1.6.18072026  
-**Платформа:** Windows
+**Платформы:** Windows, Linux
 
 ---
 
@@ -11,13 +11,25 @@
 
 | Файл / папка | Описание |
 |--------------|----------|
-| [HockeyScoreboard.exe](HockeyScoreboard.exe) | Программа |
+| [HockeyScoreboard.exe](HockeyScoreboard.exe) | Программа (Windows) |
+| [HockeyScoreboard](HockeyScoreboard) | Программа (Linux) |
+| [ImportRoster](ImportRoster) | Импорт составов (Linux) |
 | [manual.chm](manual.chm) | Справка |
 | [resource/](resource/) | Ресурсы (шрифты, языки, стили, изображения) |
 
+### Windows
 1. Скачайте репозиторий целиком (**Code → Download ZIP**) или клонируйте его.
 2. Убедитесь, что рядом с `HockeyScoreboard.exe` лежат `manual.chm` и папка `resource`.
 3. Запустите `HockeyScoreboard.exe`.
+
+### Linux
+1. Скачайте или клонируйте репозиторий (**нужен [Git LFS](https://git-lfs.com)** — бинарники хранятся через LFS).
+2. Убедитесь, что рядом с `HockeyScoreboard` лежат `ImportRoster` (по желанию) и папка `resource`.
+3. Сделайте файл исполняемым и запустите:
+   ```bash
+   chmod +x HockeyScoreboard ImportRoster
+   ./HockeyScoreboard
+   ```
 
 > Аудио, видео и файл конфигурации в публичную сборку не входят — их нужно добавить отдельно при необходимости.
 
